@@ -97,24 +97,24 @@ $navbar-inner-wrapper-padding: 40px;
 }
 
 /* NAVBAR LINKS LIST */
-.navbar-inner-wrapper > ul {
+.navbar-inner-wrapper > nav > ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 /* NAVBAR LINKS LIST ITEM */
-.navbar-inner-wrapper > ul > li {
+.navbar-inner-wrapper > nav > ul > li {
   display: inline-block;
   margin-right: 40px;
 
   &:last-child { margin-right: 0px; }
 }
 /* NAVBAR LINKS LIST LINK */
-.navbar-inner-wrapper > ul > li > a {
+.navbar-inner-wrapper > nav > ul > li > a {
   @include transition(0.2s);
   cursor: pointer;
   color: $blue-grey-600;
-  font-size: 24px; font-weight: 600;
+  font-size: 18px; font-weight: 600;
   text-decoration: none;
 
   &:hover {

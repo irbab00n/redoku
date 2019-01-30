@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import LogoTitle from './LogoTitle';
+import NavLinkList from './NavLinkList';
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class Navbar extends React.Component {
   }
 
   render() {
-    const { logoURL, title } = this.props;
+    const { links, logoURL, title } = this.props;
 
     return (
 
@@ -19,11 +20,9 @@ export default class Navbar extends React.Component {
             logoURL={logoURL}
             title={title}
           />
-          <ul className="links">
-            <li>
-              <a>Links</a>
-            </li>
-          </ul>
+          <NavLinkList 
+            links={links}
+          />
         </div>
       </header>
 
@@ -33,6 +32,7 @@ export default class Navbar extends React.Component {
 }
 
 Navbar.propTypes = {
+  links: PropTypes.array.isRequired,
   logoURL: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }
