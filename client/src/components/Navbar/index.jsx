@@ -32,7 +32,7 @@ export default class Navbar extends React.Component {
 }
 
 Navbar.propTypes = {
-  links: PropTypes.array.isRequired,
+  links: PropTypes.arrayOf(PropTypes.object).isRequired,
   logoURL: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }

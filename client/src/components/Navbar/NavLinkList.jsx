@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import NavLink from './NavLink';
+
 const NavLinkList = ({ links }) => (
   <nav>
     <ul>
       {
-        links.map(link => (
-          <li>
-            <a href={link.endpoint}>{link.title}</a>
-          </li>
+        links.map((link, index) => (
+          <NavLink key={`nav-link-${index}`} endpoint={link.endpoint} title={link.title} />
         )) 
       }
     </ul>
@@ -16,7 +16,7 @@ const NavLinkList = ({ links }) => (
 );
 
 NavLinkList.propTypes = {
-  links: PropTypes.array.isRequired
+  links: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default NavLinkList;
