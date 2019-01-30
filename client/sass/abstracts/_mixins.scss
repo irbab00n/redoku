@@ -1,0 +1,115 @@
+@mixin flex {
+  display: -webkit-box;  // for Safari
+  display: -ms-flexbox;  // for IE
+  display: flex;  // for Everything else
+}
+
+@mixin flex-column {
+  -webkit-box-orient:       vertical;  // for Safari
+  -webkit-box-direction:    normal;
+  -ms-flex-direction:       column;  // for IE
+  flex-direction:           column;  // for everything else
+}
+
+// Flex Align Mixins
+
+@mixin align-center {
+  -webkit-box-align:  center;  // for Safari
+  -ms-flex-align:     center;  // for IE
+  align-items:        center;  // for everything else
+}
+
+// Flex Justify Mixins
+
+@mixin justify-between {
+  -webkit-box-pack:   justify; // for Safari
+  -ms-flex-pack:      justify; // for IE
+  justify-content:    space-between; // for everything else
+}
+
+@mixin justify-center {
+  -webkit-box-pack:   center;  // for Safari
+  -ms-flex-pack:      center;  // for IE
+  justify-content:    center;  // for everything else
+
+}
+@mixin justify-end {
+  -webkit-box-pack:   end;  // for Safari
+  -ms-flex-pack:      end;  // for IE
+  justify-content:    flex-end;  // for everything else
+}
+
+@mixin justify-evenly {
+  -webkit-box-pack:   space-evenly;
+  -ms-flex-pack:      space-evenly; // for IE
+  justify-content:    space-evenly; // for everything else
+}
+
+@mixin justify-start {
+  -webkit-box-pack:   start;  // for Safari
+  -ms-flex-pack:      start;  // for IE
+  justify-content:    flex-start;  // for everything else
+}
+
+/* Flex Wrap Mixins */
+
+@mixin flex-wrap($wrap) {
+  -ms-flex-wrap:  $wrap;
+  flex-wrap:      $wrap;
+}
+
+/* Border Box Mixins */
+
+@mixin box-size-border-box {
+  -webkit-box-sizing:   border-box;
+  box-sizing:           border-box;
+}
+
+@mixin no-select {
+  -webkit-touch-callout:  none; /* iOS Safari */
+  -webkit-user-select:    none; /* Safari */
+  -khtml-user-select:     none; /* Konqueror HTML */
+  -moz-user-select:       none; /* Firefox */
+  -ms-user-select:        none; /* Internet Explorer/Edge */
+  user-select:            none; /* Non-prefixed version, currently
+                        supported by Chrome and Opera */
+}
+
+/* FLEX ORDER */
+@mixin order($order) {
+  -webkit-box-ordinal-group: $order;
+  -ms-flex-order: $order;
+  order: $order;
+}
+
+/* Transition Mixins */
+
+@mixin transition($delay) {
+  -webkit-transition:   $delay;
+  -o-transition:        $delay;
+  transition:           $delay;
+}
+
+/* Box shadows */
+
+@mixin box-shadow($horizontal, $vertical, $blur, $spread, $color) {
+  -webkit-box-shadow:   $horizontal $vertical $blur $spread $color;
+  -moz-box-shadow:      $horizontal $vertical $blur $spread $color;
+  box-shadow:           $horizontal $vertical $blur $spread $color;
+}
+
+/* Jumbotron background mixins */
+
+@mixin jumbotron-background {
+  background: -moz-linear-gradient(left, rgba(5,20,28,0.20) 0%, rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%, rgba(5,20,28,0.20) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(5,20,28,0.20) 0%,rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%,rgba(5,20,28,0.20) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(5,20,28,0.20) 0%,rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%,rgba(5,20,28,0.20) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a05141c', endColorstr='#1a05141c',GradientType=1 ); /* IE6-9 */
+}
+
+@mixin jumbotron-background-vert($opacity) {
+  background: -moz-linear-gradient(top,     rgba(0, 122, 193, $opacity ) 0%, rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%, rgba(0, 122, 193, $opacity ) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(0, 122, 193, $opacity ) 0%,rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%,rgba(0, 122, 193, $opacity ) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,    rgba(0, 122, 193, $opacity ) 0%,rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%,rgba(0, 122, 193, $opacity ) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a05141c', endColorstr='#1a05141c',GradientType=2 ); /* IE6-9 */
+}

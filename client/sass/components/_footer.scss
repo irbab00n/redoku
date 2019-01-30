@@ -1,0 +1,67 @@
+$footer-height: 60px;
+$footer-padding-dimension: 12px;
+
+$footer-inner-wrapper-padding: 40px;
+
+.footer-wrapper {
+  @include flex;
+  height: $footer-height; width: 100%;
+  padding: $footer-padding-dimension 0;
+  top: 0;
+  z-index: 1000;
+
+  &.cosbytes-background {
+    background-color: $cosbytes-blue;
+  }
+}
+
+.footer-inner-wrapper {
+  @include flex; @include align-center; @include justify-center;
+  @include box-size-border-box;
+  color: $blue-grey-800;
+  font-size: 14px;
+  height: 100%; width: 100%;
+  padding: 0 $footer-inner-wrapper-padding;
+}
+
+@media (max-width: 2560px) {
+  
+}
+
+/* 1920 x 1080 support */
+@media (max-width: 1920px) {
+  .footer-inner-wrapper {
+    font-size: 14px;
+  }
+}
+
+/* 1440 x 900 support */
+@media (max-width: 1440px) {
+}
+
+/* Viewport, right after iPad */
+@media (max-width: 1023px) {
+  .footer-inner-wrapper {
+    font-size: 12px;
+  }
+}
+
+/* iPad Portrait */
+@media (max-width: 768px) {
+
+}
+
+/* Right after iPad Portrait */
+@media (max-width: 767px) {
+
+}
+
+/* Mobile XL Portrait */
+@media (max-width: 425px) {
+  
+}
+
+/* Remove some paddings in extra small screens for more working area */
+@media (max-width: 375px) {
+
+}

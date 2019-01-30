@@ -1,0 +1,16 @@
+/* ABSTRACTS SASS FILES */
+@import "abstracts/colors";
+@import "abstracts/mixins";
+
+/* BASE SASS FILES */
+@import "base/body";
+@import "base/html";
+@import "base/shared";
+
+/* COMPONENTS SASS FILES */
+@import "components/footer";
+@import "components/jumbotron";
+@import "components/navbar";
+
+/* VIEWS SASS FILES */
+@import "views/main-page-layout";

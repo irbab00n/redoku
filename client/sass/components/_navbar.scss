@@ -1,0 +1,179 @@
+/* NAVBAR COMPONENT VALUES */
+$navbar-height-full: 80px;
+$navbar-height-2560: 70px;
+$navbar-height-1920: 60px;
+$navbar-height: 50px;
+/**
+ * These values must be the same as the "$layout-navbar-padding" values found within:
+ * 
+ *    /client/sass/layouts/_main-page-layout.scss
+ * 
+ */
+$navbar-padding-dimension: 12px;
+$navbar-shadow-veritical: 1.5px;
+$navbar-shadow-blur: 3px;
+$navbar-shadow-color: rgba(25, 25, 25, 0.4);
+
+$navbar-inner-wrapper-padding: 40px;
+
+.navbar-wrapper {
+  @include flex;
+  @include box-shadow(0px, $navbar-shadow-veritical, $navbar-shadow-blur, 0px, $navbar-shadow-color);
+  height: $navbar-height-full; width: 100%;
+  padding: $navbar-padding-dimension 0;
+  z-index: 1000;
+
+  &.cosbytes-background {
+    background-color: $cosbytes-blue;
+  }
+}
+
+.navbar-inner-wrapper {
+  @include flex; @include align-center; @include justify-between;
+  @include box-size-border-box;
+  height: 100%; width: 100%;
+  padding: 0 $navbar-inner-wrapper-padding;
+}
+
+.navbar-inner-wrapper > .logo {
+  @include flex; @include align-center;
+}
+.navbar-inner-wrapper > .logo > img {
+  @include transition(0.2s);
+  height: 36px; width: 36px;
+  margin-right: 10px;
+  opacity: 0.8;
+
+  &:hover {
+    -webkit-filter: drop-shadow(0px 0px 1px rgba(50, 50, 50, 0.2));
+    filter: drop-shadow(0px 0px 1px rgba(50, 50, 50, 0.2));
+    opacity: 1;
+
+    animation-name: logo-spin;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  &:active {
+    -webkit-filter: drop-shadow(0px 0px 1px $cosbytes-blue);
+    filter: drop-shadow(0px 0px 1px $cosbytes-blue);
+    opacity: 1;
+
+    animation-name: logo-spin;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+.navbar-inner-wrapper > .logo, .navbar-inner-wrapper > .logo > a {
+  @include transition(0.2s);
+  cursor: pointer;
+  color: $blue-grey-600;
+  font-size: 36px; font-weight: 900;
+  text-decoration: none;
+
+  &:hover {
+    color: $blue-grey-800;
+  }
+
+  &:active {
+    color: $cosbytes-blue;
+  }
+}
+
+.navbar-inner-wrapper > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.navbar-inner-wrapper > ul > li {
+  display: inline-block;
+  margin-right: 40px;
+
+  &:last-child { margin-right: 0px; }
+}
+.navbar-inner-wrapper > ul > li > a {
+  @include transition(0.2s);
+  cursor: pointer;
+  color: $blue-grey-600;
+  font-size: 24px; font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: $blue-grey-800;
+  }
+
+  &:active {
+    color: $cosbytes-blue;
+  }
+}
+
+@media (max-width: 2560px) {
+  .navbar-wrapper {
+    height: $navbar-height-2560;
+  }
+
+  .navbar-inner-wrapper > .logo, .navbar-inner-wrapper > .logo > a {
+    font-size: 28px;
+  }
+
+  .navbar-inner-wrapper > ul > li > a {
+    font-size: 20px;
+  }
+}
+
+/* 1920 x 1080 support */
+@media (max-width: 1920px) {
+  .navbar-wrapper {
+    height: $navbar-height-1920;
+  }
+
+  .navbar-inner-wrapper > .logo, .navbar-inner-wrapper > .logo > a {
+    font-size: 24px;
+  }
+
+  .navbar-inner-wrapper > ul > li > a {
+    font-size: 16px;
+  }
+}
+
+/* 1440 x 900 support */
+@media (max-width: 1440px) {
+  .navbar-wrapper {
+    height: $navbar-height;
+  }
+}
+
+/* Viewport, right after iPad */
+@media (max-width: 1023px) {
+
+}
+
+/* iPad Portrait */
+@media (max-width: 768px) {
+
+}
+
+/* Right after iPad Portrait */
+@media (max-width: 767px) {
+
+}
+
+/* Mobile XL Portrait */
+@media (max-width: 425px) {
+  
+}
+
+/* Remove some paddings in extra small screens for more working area */
+@media (max-width: 375px) {
+
+}
+
+
+/* NAVBAR ANIMATIONS */
+
+@keyframes logo-spin {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}

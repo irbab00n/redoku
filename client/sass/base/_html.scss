@@ -1,0 +1,11 @@
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;;
+  box-sizing: border-box;
+  // font-family: gordita,Helvetica Neue,Helvetica,sans-serif;
+  font-family: 'Raleway', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
