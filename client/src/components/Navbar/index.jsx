@@ -10,7 +10,7 @@ export default class Navbar extends React.Component {
   }
 
   render() {
-    const { links, logoURL, title } = this.props;
+    const { links = [], logoURL, title } = this.props;
 
     return (
 
@@ -32,7 +32,7 @@ export default class Navbar extends React.Component {
 }
 
 Navbar.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.object).isRequired,
+  links: PropTypes.arrayOf(PropTypes.object),
   logoURL: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }
