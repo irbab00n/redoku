@@ -1,21 +1,17 @@
 import React from 'react';
+import { Helmet } from "react-helmet";
 
 import Footer from '../components/Footer/';
-import Jumbotron from '../components/Jumbotron/';
-
-import slides from '../lib/jumbotronSlides';
 
 const Home = (props) => (
   <main className="main-page-layout">
 
-    {/* Jumbotron */}
-    <Jumbotron
-      slides={slides}
-    />
+    <Helmet>
+      <title>{'Redoku | Home'}</title>
+    </Helmet>
 
     <Footer />
-
-
+    
   </main>
 );
 

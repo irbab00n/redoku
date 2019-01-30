@@ -3,6 +3,11 @@ $navbar-height-full: 80px;
 $navbar-height-2560: 70px;
 $navbar-height-1920: 60px;
 $navbar-height: 50px;
+
+$navbar-inner-wrapper-width-full: 1920px;
+$navbar-inner-wrapper-width-2560: 1500px;
+$navbar-inner-wrapper-width-1920: 1300px;
+$navbar-inner-wrapper-width: 1100px;
 /**
  * These values must be the same as the "$layout-navbar-padding" values found within:
  * 
@@ -16,9 +21,9 @@ $navbar-shadow-color: rgba(25, 25, 25, 0.4);
 
 $navbar-inner-wrapper-padding: 40px;
 
+/* NAVBAR OUTER WRAPPER */
 .navbar-wrapper {
   @include flex;
-  @include box-shadow(0px, $navbar-shadow-veritical, $navbar-shadow-blur, 0px, $navbar-shadow-color);
   height: $navbar-height-full; width: 100%;
   padding: $navbar-padding-dimension 0;
   z-index: 1000;
@@ -26,18 +31,26 @@ $navbar-inner-wrapper-padding: 40px;
   &.cosbytes-background {
     background-color: $cosbytes-blue;
   }
+
+  &.drop-shadow {
+    @include box-shadow(0px, $navbar-shadow-veritical, $navbar-shadow-blur, 0px, $navbar-shadow-color);
+  }
 }
 
+/* NAVBAR INNER WRAPPER */
 .navbar-inner-wrapper {
   @include flex; @include align-center; @include justify-between;
   @include box-size-border-box;
-  height: 100%; width: 100%;
+  height: 100%; max-width: $navbar-inner-wrapper-width; width: 100%;
+  margin: 0 auto;
   padding: 0 $navbar-inner-wrapper-padding;
 }
 
+/* NAVBAR LOGO WRAPPER */
 .navbar-inner-wrapper > .logo {
   @include flex; @include align-center;
 }
+/* NAVBAR LOGO IMAGE */
 .navbar-inner-wrapper > .logo > img {
   @include transition(0.2s);
   height: 36px; width: 36px;
@@ -49,8 +62,8 @@ $navbar-inner-wrapper-padding: 40px;
     filter: drop-shadow(0px 0px 1px rgba(50, 50, 50, 0.2));
     opacity: 1;
 
-    animation-name: logo-spin;
-    animation-duration: 2s;
+    animation-name: bounce;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
@@ -61,12 +74,13 @@ $navbar-inner-wrapper-padding: 40px;
     opacity: 1;
 
     animation-name: logo-spin;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
 }
-.navbar-inner-wrapper > .logo, .navbar-inner-wrapper > .logo > a {
+/* NAVBAR LOGO TITLE */
+.navbar-inner-wrapper > .logo > a {
   @include transition(0.2s);
   cursor: pointer;
   color: $blue-grey-600;
@@ -82,17 +96,20 @@ $navbar-inner-wrapper-padding: 40px;
   }
 }
 
+/* NAVBAR LINKS LIST */
 .navbar-inner-wrapper > ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
+/* NAVBAR LINKS LIST ITEM */
 .navbar-inner-wrapper > ul > li {
   display: inline-block;
   margin-right: 40px;
 
   &:last-child { margin-right: 0px; }
 }
+/* NAVBAR LINKS LIST LINK */
 .navbar-inner-wrapper > ul > li > a {
   @include transition(0.2s);
   cursor: pointer;
@@ -109,6 +126,8 @@ $navbar-inner-wrapper-padding: 40px;
   }
 }
 
+
+/* ---------- RESPONSIVE STYLES ---------- */
 @media (max-width: 2560px) {
   .navbar-wrapper {
     height: $navbar-height-2560;
@@ -176,4 +195,14 @@ $navbar-inner-wrapper-padding: 40px;
 @keyframes logo-spin {
   0%    { transform: rotate(0deg); }
   100%  { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%    { transform: translate(0, 0px); }
+  20%   { transform: translate(0, -10px); }
+  40%   { transform: translate(0, 0px); }
+  60%   { transform: translate(0, -4px); }
+  80%   { transform: translate(0, 0px); }
+  90%   { transform: translate(0, 1px); }
+  100%  { transform: translate(0, 0px); }
 }

@@ -20,7 +20,10 @@ export default class App extends React.Component {
 
     return (
       <div id="application-wrapper">
-        <Navbar />
+        <Navbar
+          logoURL={'https://s3-us-west-1.amazonaws.com/cos-bytes.com/redux.png'}
+          title={'Redoku'}
+        />
         <Router history={hist}>
           <Switch>
             <Route exact path="/" component={Main}/>
