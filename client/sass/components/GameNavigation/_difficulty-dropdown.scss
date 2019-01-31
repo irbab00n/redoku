@@ -6,6 +6,7 @@ $quickplay-dropdown-min-width: 200px;
   height: $quickplay-dropdown-max-height; min-width: $quickplay-dropdown-min-width;
   color: $blue-grey-900;
   text-decoration: none;
+  border-radius: 4px;
 }
 
 .difficulty-dropdown > h4 {
@@ -59,6 +60,8 @@ $quickplay-dropdown-min-width: 200px;
   @include flex; @include align-center; @include justify-between;
   background-color: $indigo-400;
   height: $quickplay-dropdown-max-height;
+
+  &:hover { background-color: $indigo-500; }
 
   &:active { background-color: $indigo-900; }
 }

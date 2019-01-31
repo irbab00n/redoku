@@ -30,19 +30,20 @@ $puzzle-grid-dimension: 540px;
 }
 
 .puzzle-box {
-  @include transition(0.1s);
-  @include box-shadow(1px, 1px, 4px, 0px, rgba(25, 25, 25, 1));
+  @include transition(0.2s);
+  @include box-shadow(0px, 0px, 4px, 0px, rgba(25, 25, 25, 0.4));
   cursor: pointer;
   height: 90%;
   width: 90%;
   font-size: 36px;
   text-align: center;
   border: none;
+  border-radius: 4px;
 
   &:hover, &:focus {
-    @include box-shadow(1px, 1px, 6px, 0px, rgba(25, 25, 25, 1));
-    height: 92%;
-    width: 92%;
+    @include box-shadow(0px, 0px, 6px, 0px, $cosbytes-blue);
+    height: 93%;
+    width: 93%;
   }
 }
 

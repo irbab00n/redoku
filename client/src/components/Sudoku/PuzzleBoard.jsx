@@ -56,10 +56,10 @@ export default class PuzzleBoard extends React.Component {
             {this.buildPuzzle()}
           </div>
 
-          <div className="puzzle-options display-flex-row flex-align-center flex-justify-around">
+          {/* <div className="puzzle-options display-flex-row flex-align-center flex-justify-around">
             <button onClick={() => this.props.actions.checkPuzzleSolution()}>Submit Puzzle</button>
             <button onClick={() => this.props.actions.checkPuzzleSolution()}>Submit Puzzle</button>
-          </div>
+          </div> */}
         </div>
 
     );
