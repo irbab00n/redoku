@@ -31,9 +31,15 @@ export default class DifficultyDropdown extends React.Component {
             <i className={`fas fa-angle-down arrow ${showDropdown ? 'show' : ''}`}></i>
           </div>
           <ul className={showDropdown ? 'show' : ''}>
-            <li><a>Easy</a></li>
-            <li><a>Medium</a></li>
-            <li><a>Hard</a></li>
+            {
+              showDropdown ?
+                [
+                  <li><a>Easy</a></li>,
+                  <li><a>Medium</a></li>,
+                  <li><a>Hard</a></li>
+                ] : 
+                null
+            }
           </ul>
         </div>
       </div>
