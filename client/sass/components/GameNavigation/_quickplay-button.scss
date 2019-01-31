@@ -39,7 +39,7 @@ button.quickplay > span {
 
   &:focus {
     animation-name: quickplay-focus;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     outline: none;
