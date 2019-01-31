@@ -8,8 +8,11 @@
 @import "base/shared";
 
 /* COMPONENTS SASS FILES */
+@import "components/GameNavigation/difficulty-dropdown";
+@import "components/GameNavigation/index";
+@import "components/GameNavigation/quickplay-button";
 @import "components/footer";
 @import "components/navbar";
 
 /* VIEWS SASS FILES */
-@import "views/main-page-layout";
+@import "views/main-view-layout";

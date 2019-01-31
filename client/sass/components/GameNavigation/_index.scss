@@ -1,0 +1,16 @@
+/* GAME NAVIGATION VALUES */
+
+/* GAME NAVIGATION OUTER WRAPPER */
+#game-navigation {
+  @include flex;
+  margin-top: 20px;
+}
+
+/* GAME NAVIGATION INNER COMPONENTS SHARED */
+#game-navigation > * {
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0px;
+  }
+}

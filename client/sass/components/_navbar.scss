@@ -43,7 +43,6 @@ $navbar-inner-wrapper-padding: 40px;
   @include box-size-border-box;
   height: 100%; max-width: $navbar-inner-wrapper-width; width: 100%;
   margin: 0 auto;
-  padding: 0 $navbar-inner-wrapper-padding;
 }
 
 /* NAVBAR LOGO WRAPPER */

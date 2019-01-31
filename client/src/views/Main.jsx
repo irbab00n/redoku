@@ -1,16 +1,18 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
 
-import Footer from '../components/Footer/';
+import GameNavigation from '../components/GameNavigation/'
 
 const Home = (props) => (
-  <main className="main-page-layout">
+  <main className="main-view-layout">
 
     <Helmet>
       <title>{'Redoku | Home'}</title>
     </Helmet>
 
-    <Footer />
+    <GameNavigation />
+
+    <div>Main Content</div>
     
   </main>
 );

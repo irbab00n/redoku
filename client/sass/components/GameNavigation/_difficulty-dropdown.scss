@@ -1,0 +1,117 @@
+/* QUICKPLAY BUTTON VALUES */
+$quickplay-dropdown-max-height: 48px;
+$quickplay-dropdown-min-width: 200px;
+
+.difficulty-dropdown {
+  height: $quickplay-dropdown-max-height; min-width: $quickplay-dropdown-min-width;
+  color: $blue-grey-900;
+  text-decoration: none;
+}
+
+.difficulty-dropdown > h4 {
+  @include transition(0.2s);
+  font-size: 24px; font-weight: 900;
+  margin: 6px 0;
+  &:hover { color: $blue-grey-900; }
+}
+
+.difficulty-dropdown > .image {
+  @include transition(0.2s);
+  background-color: $grey-900 !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  margin: 6px;
+  opacity: 1;
+  height: 174px;
+
+  &:hover {
+    @include box-shadow(1px, 1px, 4px, 0.2px, rgba(25, 25, 25, 0.8));
+    opacity: 0.8;
+  }
+}
+
+.difficulty-dropdown > .title {
+  @include transition(0.2s);
+  font-weight: 600;
+  &:hover { color: $amber-900; }
+}
+
+.difficulty-dropdown > .dropdown-wrapper {
+  @include flex; @include flex-column;
+  @include transition(0.2s);
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  
+  &:hover {
+    @include box-shadow(0px, 0px, 4px, 0.2px, $cosbytes-blue);
+  }
+
+  &:focus {
+    outline: 2px solid $amber-700;
+  }
+}
+
+/* SELECTION ARROW WRAPPER */
+.difficulty-dropdown > .dropdown-wrapper > .selection-arrow-wrapper {
+  @include transition(0.2s);
+  @include flex; @include align-center; @include justify-between;
+  background-color: $indigo-400;
+  height: $quickplay-dropdown-max-height;
+
+  &:active { background-color: $indigo-900; }
+}
+/* SELECTION ARROW WRAPPER LABEL */
+.difficulty-dropdown > .dropdown-wrapper > .selection-arrow-wrapper > .label {
+  color: $white;
+  font-size: 20px; font-weight: 600;
+  margin-left: 20px;
+}
+/* SELECTION ARROW WRAPPER ICON */
+.difficulty-dropdown > .dropdown-wrapper > .selection-arrow-wrapper > i {
+  @include transition(0.2s);
+  color: $white;
+  margin-right: 20px;
+
+  &.show { transform: rotate(180deg); transform-origin: center; }
+}
+
+/* LINK LIST */
+.difficulty-dropdown > .dropdown-wrapper > ul {
+  @include transition(0.2s);
+  background-color: $blue-grey-50;
+  list-style: none;
+  margin: 0;
+  max-height: 0px;
+  opacity: 0;
+  padding: 0;
+  width: 100%;
+
+  &.show {
+    @include box-shadow(0px, 0px, 4px, 0.2px, rgba(25, 25, 25, 0.2));
+    max-height: 150px;
+    opacity: 1;
+  }
+}
+
+/* LINK CONTAINER */
+.difficulty-dropdown > .dropdown-wrapper > ul > li {
+  @include transition(0.2s);
+  @include flex; @include align-center;
+  height: $quickplay-dropdown-max-height;
+  padding-left: 20px;
+
+  &:hover {
+    background-color: $white;
+  }
+}
+
+/* LINK TEXT */
+.difficulty-dropdown > .dropdown-wrapper > ul > li > a {
+  @include flex; @include align-center;
+  height: 100%; width: 100%;
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+}

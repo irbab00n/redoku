@@ -1,21 +1,11 @@
-/* MAIN PAGE LAYOUT VALUES */
-/**
- * These values must be the same as the "$navbar-height" values found within:
- * 
- *    /client/sass/components/_jumbotron.scss
- * 
- */
-$main-layout-navbar-margin-full: 80px; 
-$main-layout-navbar-margin-2560: 70px;
-$main-layout-navbar-margin-1920: 60px;
-$main-layout-navbar-margin: 50px;
+/* MAIN VIEW LAYOUT VALUES */
+$main-view-max-width: 1100px;
 
-
-/* MAIN PAGE LAYOUT WRAPPER */
-.main-page-layout {
+/* MAIN VIEW LAYOUT WRAPPER */
+.main-view-layout {
   @include flex; @include flex-column; @include justify-center;
   @include box-size-border-box;
-  width: 100%;
+  max-width: $main-view-max-width; width: 100%;
   margin: 0 auto 0 auto;
   
   /* PAGE CONTENT CONTAINER */
