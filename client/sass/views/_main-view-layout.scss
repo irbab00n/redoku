@@ -1,5 +1,6 @@
 /* MAIN VIEW LAYOUT VALUES */
 $main-view-max-width: 1100px;
+$main-view-container-top-margin: 40px;
 
 /* MAIN VIEW LAYOUT WRAPPER */
 .main-view-layout {
@@ -7,29 +8,15 @@ $main-view-max-width: 1100px;
   @include box-size-border-box;
   max-width: $main-view-max-width; width: 100%;
   margin: 0 auto 0 auto;
-  
-  /* PAGE CONTENT CONTAINER */
-  .container {
-    @include box-size-border-box;
-    width: 100%;
+}
 
-    &.blue-grey-background {
-      background-color: $blue-grey-100;
-    }
+.main-view-container {
+  margin-top: $main-view-container-top-margin;
+  width: 100%;
 
-    &.border-bottom {
-      border-bottom: 1px solid rgba(150, 158, 174, 0.6);
-    }
-    
-    /* CONTAINER INNER WRAPPER */
-    .inner-wrapper {
-      max-width: 980px; width: 100%;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
+  &:last-of-type {
+    margin-bottom: $main-view-container-top-margin;
   }
-
 }
 
 /* RESPONSIVE STYLES */

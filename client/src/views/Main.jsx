@@ -1,7 +1,10 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
 
-import GameNavigation from '../components/GameNavigation/'
+import Footer from '../components/Footer/'
+import GameNavigation from '../components/GameNavigation/';
+import PuzzleBoard from '../components/Sudoku/PuzzleBoard';
+
 
 const Home = (props) => (
   <main className="main-view-layout">
@@ -11,8 +14,12 @@ const Home = (props) => (
     </Helmet>
 
     <GameNavigation />
+    
+    <div className="main-view-container">
+      <PuzzleBoard />
+    </div>
 
-    <div>Main Content</div>
+    <Footer />
     
   </main>
 );

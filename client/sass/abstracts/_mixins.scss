@@ -58,6 +58,12 @@
   flex-wrap:      $wrap;
 }
 
+/* DISPLAY GRID */
+@mixin grid {
+  display: -ms-grid;
+  display: grid;
+}
+
 /* Border Box Mixins */
 
 @mixin box-size-border-box {
@@ -100,14 +106,14 @@
 
 /* Jumbotron background mixins */
 
-@mixin jumbotron-background {
-  background: -moz-linear-gradient(left, rgba(5,20,28,0.20) 0%, rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%, rgba(5,20,28,0.20) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(5,20,28,0.20) 0%,rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%,rgba(5,20,28,0.20) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(5,20,28,0.20) 0%,rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%,rgba(5,20,28,0.20) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+@mixin jumbotron-background ($opacity) {
+  background: -moz-linear-gradient(left,    rgba(5, 20, 28, $opacity) 0%, rgba(25, 25, 25, 0) 33.33%, rgba(25, 25, 25, 0) 66.66%, rgba(5, 20, 28, $opacity) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(5, 20, 28, $opacity) 0%, rgba(25, 25, 25, 0) 33.33%, rgba(25, 25, 25, 0) 66.66%, rgba(5, 20, 28, $opacity) 100%); /* Chrome10-25, Safari5.1-6 */
+  background: linear-gradient(to right,     rgba(5, 20, 28, $opacity) 0%, rgba(25, 25, 25, 0) 33.33%, rgba(25, 25, 25, 0) 66.66%, rgba(5, 20, 28, $opacity) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a05141c', endColorstr='#1a05141c',GradientType=1 ); /* IE6-9 */
 }
 
-@mixin jumbotron-background-vert($opacity) {
+@mixin jumbotron-background-vert ($opacity) {
   background: -moz-linear-gradient(top,     rgba(0, 122, 193, $opacity ) 0%, rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%, rgba(0, 122, 193, $opacity ) 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top,  rgba(0, 122, 193, $opacity ) 0%,rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%,rgba(0, 122, 193, $opacity ) 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,    rgba(0, 122, 193, $opacity ) 0%,rgba(25,25,25,0) 33.33%, rgba(25,25,25,0) 66.66%,rgba(0, 122, 193, $opacity ) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */

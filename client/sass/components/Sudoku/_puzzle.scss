@@ -1,0 +1,55 @@
+/* PUZZLE VALUES */
+$puzzle-grid-dimension: 540px;
+
+/* Puzzle Grid */
+
+.puzzle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.puzzle-grid {
+  @include grid;
+  width: $puzzle-grid-dimension;
+  height: $puzzle-grid-dimension;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto auto auto auto;
+  padding: 10px;
+}
+
+.puzzle-options {
+  width: $puzzle-grid-dimension;
+  height: 100px;
+  background-color: rgba(225, 225, 225, 1.0);
+}
+
+.grid-item {
+  @include flex; @include align-center; @include justify-center;
+  // border: 1px solid;
+}
+
+.puzzle-box {
+  @include transition(0.1s);
+  @include box-shadow(1px, 1px, 4px, 0px, rgba(25, 25, 25, 1));
+  cursor: pointer;
+  height: 90%;
+  width: 90%;
+  font-size: 36px;
+  text-align: center;
+  border: none;
+
+  &:hover, &:focus {
+    @include box-shadow(1px, 1px, 6px, 0px, rgba(25, 25, 25, 1));
+    height: 92%;
+    width: 92%;
+  }
+}
+
+.grid-bg-normal {
+  background-color: $white;
+}
+
+.grid-bg-alt {
+  background-color: $indigo-100;
+}

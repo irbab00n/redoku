@@ -1,5 +1,5 @@
 import React from 'react';
-import PuzzleSquare from './PuzzleSquare.jsx';
+import PuzzleSquare from './PuzzleSquare';
 
 export default class PuzzleBoard extends React.Component {
   constructor(props) {
@@ -32,7 +32,6 @@ export default class PuzzleBoard extends React.Component {
         <PuzzleSquare 
           key={`${row}${column}`} 
           coordinates={`${row}-${column}`} 
-          actions={this.props.actions} 
           background={this.determineBackground(row, column)}
         />
       );
@@ -42,6 +41,7 @@ export default class PuzzleBoard extends React.Component {
       }
       column === size ? (column = 0, row++): column++;
     }
+    console.log('elements: ', elements);
     return elements;
   }
 

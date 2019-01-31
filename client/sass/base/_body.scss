@@ -1,5 +1,8 @@
 body {
+  @include jumbotron-background(0.1);
   background-color: $blue-grey-50;
+  border-top: 1px solid rgba(25, 25, 25, 0.2);
+  border-bottom: 1px solid rgba(25, 25, 25, 0.2);
   color: black;
   margin: 0;
   line-height: 1.5em;

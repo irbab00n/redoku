@@ -17,7 +17,8 @@ export default class PuzzleSquare extends React.Component {
       this.setState({
         value: '',
         placeholder: ''
-      }, () => this.props.actions.updatePuzzleSquare(this.props.coordinates, this.state.value));
+      }, () => {});
+      // }, () => this.props.actions.updatePuzzleSquare(this.props.coordinates, this.state.value));
     }
     let keyValue = String.fromCharCode(keyCode);
     let values = '123456789';
@@ -25,7 +26,8 @@ export default class PuzzleSquare extends React.Component {
       this.setState({
         value: keyValue,
         placeholder: ''
-      }, () => this.props.actions.updatePuzzleSquare(this.props.coordinates, this.state.value));
+      }, () => {});
+      // }, () => this.props.actions.updatePuzzleSquare(this.props.coordinates, this.state.value));
     }
   }
   /* updatePlaceholder info --
@@ -64,7 +66,7 @@ export default class PuzzleSquare extends React.Component {
 
   render() {
 
-    let coordinates = this.props.coordinates.split('-')
+    let coordinates = this.props.coordinates.split('-');
     let row = coordinates[0];
     let column = coordinates[1];
 

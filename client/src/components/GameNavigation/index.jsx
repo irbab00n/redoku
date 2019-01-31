@@ -18,9 +18,11 @@ export default class GameNavigation extends React.Component {
           <span tabIndex="0">Quickplay</span>
         </button>
 
+        {/* DIFFICULTY DROPDOWN */}
         <DifficultyDropdown />
 
-        <div>Rules Button</div>
+        {/* RULES TOGGLE */}
+        {/* <div>Rules Button</div> */}
       </section>
 
     );
