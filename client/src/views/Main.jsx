@@ -5,23 +5,31 @@ import Footer from '../components/Footer/'
 import GameNavigation from '../components/GameNavigation/';
 import PuzzleBoard from '../components/Sudoku/PuzzleBoard';
 
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-const Home = (props) => (
-  <main className="main-view-layout">
+  render() {
 
-    <Helmet>
-      <title>{'Redoku | Home'}</title>
-    </Helmet>
+    return (
+      <main className="main-view-layout">
 
-    <GameNavigation />
+        <Helmet>
+          <title>{'Redoku | Main'}</title>
+        </Helmet>
     
-    <div className="main-view-container">
-      <PuzzleBoard />
-    </div>
-
-    <Footer />
+        <GameNavigation />
+        
+        <div className="main-view-container">
+          <PuzzleBoard />
+        </div>
     
-  </main>
-);
+        <Footer />
+        
+      </main>
+    );
+  }
+}
 
-export default Home;
+export default Main;
