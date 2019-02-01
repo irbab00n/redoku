@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import dispatchMappedActions from '../../redux/dispatchMappedActions';
 
-export default class PuzzleSquare extends React.Component {
+class PuzzleSquare extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,7 +73,6 @@ export default class PuzzleSquare extends React.Component {
     let column = coordinates[1];
 
     return (
-
       <div className="grid-item display-flex-row flex-align-center flex-justify-center">
         <input 
           className={`puzzle-box ${this.props.background}`} 
@@ -82,13 +83,14 @@ export default class PuzzleSquare extends React.Component {
           onBlur={() => this.replaceValueWithPlaceholder()}
         />
       </div>
-
     );
-
   }
-
 }
 
-// when the user clicks into the form field, we want to take the current value and place it as the placeholder, then change the value back to ''
-// this will save the old value
-// when the user un-selects the form field, if
+
+const ConnectedPuzzleSquare = connect(
+  state => state,
+  dispatchMappedActions
+)(PuzzleSquare);
+
+export default ConnectedPuzzleSquare;

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
+import { connect } from 'react-redux';
+import dispatchMappedActions from '../redux/dispatchMappedActions';
 
 import Footer from '../components/Footer/'
 import GameNavigation from '../components/GameNavigation/';
@@ -8,6 +10,10 @@ import PuzzleBoard from '../components/Sudoku/PuzzleBoard';
 class Main extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    this.props.actions.fetchMainViewPuzzle();
   }
 
   render() {
@@ -32,4 +38,9 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+const ConnectedMain = connect(
+  state => state,
+  dispatchMappedActions
+)(Main);
+
+export default ConnectedMain;
