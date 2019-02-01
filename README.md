@@ -2,6 +2,8 @@
 
 This is a React Redux based sudoku game.
 
+https://app.redoku.rocks
+
 ## How to run the application:
 
 Before running the application, all dependencies must be downloaded first.
