@@ -19,7 +19,7 @@ export const fetchMainViewPuzzle = (params = {}) => {
     dispatch(setMainViewPuzzleFetchingAction(true));
     axios.get(`${API_URL}/puzzle`, {params})
       .then(response => {
-        // console.log('successful response from the puzzles API', response);
+        console.log('successful response from the puzzles API', response);
 
         let decompressedPuzzle = matrixCompressor.decompress(response.data.initial, ',');
         // console.log('decompressed puzzle: ', decompressedPuzzle);
@@ -37,6 +37,7 @@ export const fetchMainViewPuzzle = (params = {}) => {
   };
 };
 
+
 // SET_MAIN_VIEW_PUZZLE_ERROR
 /**
  * Sets the application flag that an error has occurred while fetching a puzzle
@@ -52,6 +53,7 @@ const setMainViewPuzzleErrorAction = flag => ({
   }
 });
 
+
 // SET_MAIN_VIEW_PUZZLE_ERROR_MESSAGE
 /**
  * Stores the error message returned from attempting to fetch a puzzle
@@ -66,6 +68,7 @@ const setMainViewPuzzleErrorMessageAction = message => ({
     message
   }
 })
+
 
 // SET_MAIN_VIEW_PUZZLE_FETCHED
 /**
@@ -84,6 +87,7 @@ const setMainViewPuzzleFetchedAction = flag => ({
   }
 });
 
+
 // SET_MAIN_VIEW_PUZZLE_FETCHING
 /**
  * Used to store the state of async work still being done
@@ -99,6 +103,7 @@ const setMainViewPuzzleFetchingAction = flag => ({
   }
 });
 
+
 // SET_MAIN_VIEW_PUZZLE_MATRIX
 /**
  * Sets the puzzle matrix in state
@@ -113,6 +118,7 @@ const setMainViewPuzzleMatrixAction = matrix => ({
     matrix
   }
 });
+
 
 // SET_MAIN_VIEW_PUZZLE_STORAGE
 /**
@@ -130,10 +136,19 @@ const setMainViewPuzzleStorageAction = data => ({
 });
 
 
-// export const updatePuzzleSquare = (coordinates, value) => ({
-//   type: types.UPDATE_PUZZLE_SQUARE,
-//   payload: {
-//     coordinates: coordinates.split('-'),
-//     value
-//   }
-// });
+// SET_MAIN_VIEW_PUZZLE_SQUARE
+/**
+ * Provides a coordinate to update in the puzzle matrix to the supplied value
+ * @param {String} coordinates - Target coordinates to update to the value to
+ * @param {String} value - Value to update the target coordinates to
+ */
+export const setMainViewPuzzleSquare = (coordinates, value) => {
+  return dispatch => dispatch(setMainViewPuzzleSquareAction(coordinates, value));
+};
+const setMainViewPuzzleSquareAction = (coordinates, value) => ({
+  type: types.SET_MAIN_VIEW_PUZZLE_SQUARE,
+  payload: {
+    coordinates,
+    value
+  }
+});

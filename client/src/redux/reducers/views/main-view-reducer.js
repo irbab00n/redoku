@@ -41,6 +41,14 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
     case types.SET_MAIN_VIEW_PUZZLE_MATRIX:
       newState.puzzle.matrix = action.payload.matrix;
       return newState;
+
+    case types.SET_MAIN_VIEW_PUZZLE_SQUARE:
+      let row, column;
+
+      [row, column] = action.payload.coordinates.split('-');
+      
+      newState.puzzle.matrix[row][column] = action.payload.value;
+      return newState;
     
     default:
       return newState;

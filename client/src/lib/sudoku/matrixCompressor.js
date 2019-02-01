@@ -9,21 +9,17 @@ module.exports.compress = (matrix) => {
   matrix.forEach((row, index) => {
     // create storage for the compressed row
     let compressedRow = '';
-    
-    // might be able to remove this
-    let compressedEnd = index === matrix.length - 1 ? '' : _ROW_KEY;
 
     // for each value in the row
     row.forEach(value => {
       if (value === '') {
-        // if the value is empty, add the 
         compressedRow += _VALUE_SEPARATOR;
       } else {
         compressedRow += value + _VALUE_SEPARATOR;
       }
     });
     // add the compressed row with the 
-    compressedMatrix += compressedRow + compressedEnd;
+    compressedMatrix += compressedRow + _ROW_KEY;
   });
 
   // return the compressed matrix string
@@ -39,7 +35,7 @@ module.exports.decompress = (compressedMatrix) => {
     }
     return row.split(_VALUE_SEPARATOR);
   });
-  
+
   return decompressedMatrix;
 };
 

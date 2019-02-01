@@ -37,7 +37,6 @@ class Main extends React.Component {
 
   render() {
     const { puzzleLoaded } = this.state;
-    console.log('props on main view: ', this.props);
 
     return (
       <main className="main-view-layout">
@@ -55,6 +54,7 @@ class Main extends React.Component {
             puzzleLoaded ?
               <PuzzleBoard
                 puzzle={this.props.views.main.puzzle}
+                updateFunction={this.props.actions.setMainViewPuzzleSquare}
               /> :
               null
           }

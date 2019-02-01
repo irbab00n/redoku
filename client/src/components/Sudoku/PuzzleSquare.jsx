@@ -6,8 +6,8 @@ class PuzzleSquare extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
-      placeholder: ''
+      placeholder: '',
+      showValue: true
     };
     this.updateValue = this.updateValue.bind(this);
     this.updatePlaceholder = this.updatePlaceholder.bind(this);
@@ -15,58 +15,50 @@ class PuzzleSquare extends React.Component {
   }
 
   updateValue(keyCode) {
+    const { coordinates, updateFunction } = this.props;
+
+    // valid values to allow
+    const validCharacters = '123456789';
+    // if the user presses the 'Backspace' key
     if (keyCode === 8) {
       this.setState({
-        value: '',
+        showValue: true,
         placeholder: ''
-      }, () => {});
+      }, () => updateFunction(coordinates, ''));
       // }, () => this.props.actions.updatePuzzleSquare(this.props.coordinates, this.state.value));
     }
-    let keyValue = String.fromCharCode(keyCode);
-    let values = '123456789';
-    if (values.includes(keyValue)) {
+    // get the character from the keycodes
+    let userInput = String.fromCharCode(keyCode);
+
+    // if the input value is in the 
+    if (validCharacters.includes(userInput)) {
       this.setState({
-        value: keyValue,
+        showValue: true,
         placeholder: ''
-      }, () => {});
+      }, () => updateFunction(coordinates, userInput))
       // }, () => this.props.actions.updatePuzzleSquare(this.props.coordinates, this.state.value));
     }
   }
-  /* updatePlaceholder info --
-    Params
-      value     <string>: value to place in the placeholder field for the input
 
-    Purpose
-      Wanted to allow the user to be able to change the value without having to click, 
-      hit backspace, and then enter a new number.  Plus, if that happened, 
-  */
   updatePlaceholder(value) {
     let newPlaceholder = value === '' ? '' : value;
     this.setState({
       placeholder: newPlaceholder,
-      value: ''
+      showValue: false
     });
   }
 
-  /* replaceValueWithPlaceholder info --
-    Params
-      None
-
-    Purpose
-      Check if the current state of the placeholder isn't an empty string
-      if it is not, then set the value to the placeholder
-      clear the placeholder
-  */
   replaceValueWithPlaceholder() {
     if (this.state.placeholder !== '') {
       this.setState({
-        value: this.state.placeholder,
+        showValue: true,
         placeholder: ''
       });
     }
   }
 
   render() {
+    const { showValue } = this.state;
     const { background, isInitialValue, value } = this.props;
 
     let coordinates = this.props.coordinates.split('-');
@@ -74,16 +66,16 @@ class PuzzleSquare extends React.Component {
     let column = coordinates[1];
 
     return (
-      <div className="grid-item display-flex-row flex-align-center flex-justify-center">
+      <div className={`grid-item display-flex-row flex-align-center flex-justify-center`}>
         <input 
-          className={`puzzle-box ${background}`} 
+          className={`puzzle-box ${isInitialValue ? `${background} initial-bg` : background}`} 
           placeholder={this.state.placeholder} 
-          value={value}
-          // readOnly={isInitialValue}
-          
-          onKeyDown={(e) => this.updateValue(e.keyCode)}
-          onFocus={() => this.updatePlaceholder(this.state.value)} 
-          onBlur={() => this.replaceValueWithPlaceholder()}
+          value={showValue ? value : ''}
+          readOnly={isInitialValue}
+          onChange={() => {}}
+          onKeyDown={isInitialValue ? () => {} : (e) => this.updateValue(e.keyCode)}
+          onFocus={isInitialValue ? () => {} : () => this.updatePlaceholder(value)} 
+          onBlur={isInitialValue ? () => {} :() => this.replaceValueWithPlaceholder()}
         />
       </div>
     );

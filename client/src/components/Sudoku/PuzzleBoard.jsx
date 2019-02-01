@@ -50,7 +50,7 @@ class PuzzleBoard extends React.Component {
    */
   buildPuzzle(puzzle) {
     const sudokuSizeLimit = 8; // Array index representation of a Sudoku puzzle size (9 x 9 squares), 
-    console.log('puzzle on board: ', puzzle);
+    // console.log('puzzle on board: ', puzzle);
     const initialPuzzleMatrix = matrixCompressor.decompress(puzzle.storage.initial);
 
     let row = 0; // Row counter
@@ -62,7 +62,7 @@ class PuzzleBoard extends React.Component {
     */
     while (true) {
       let assignedValue = puzzle.matrix[row][column]; // grab the assigned value out of the puzzle matrix
-      // let isInitialValue = initialPuzzleMatrix[row][column] !== ''; // if the value in the inital matrix isn't empty
+      let isInitialValue = initialPuzzleMatrix[row][column] !== ''; // if the value in the inital matrix isn't empty
 
       // Create a new PuzzleSquare, and assign the coordinates and background
       let assignedElement = (
@@ -71,7 +71,8 @@ class PuzzleBoard extends React.Component {
           coordinates={`${row}-${column}`} 
           background={this.determineBackground(row, column)}
           value={assignedValue}
-          // isInitialValue={isInitialValue}
+          updateFunction={isInitialValue ? () => {} : this.props.updateFunction}
+          isInitialValue={isInitialValue}
         />
       );
 
