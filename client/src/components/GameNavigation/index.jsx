@@ -9,12 +9,13 @@ export default class GameNavigation extends React.Component {
     };
   }
   render() {
+    const { quickplayClickHandler = () => {} } = this.props;
 
     return (
 
       <section id="game-navigation">
         {/* QUICKPLAY BUTTON */}
-        <button className="quickplay" onClick={() => console.log('Quickplay button pressed')}>
+        <button className="quickplay" onClick={quickplayClickHandler}>
           <span tabIndex="0">Quickplay</span>
         </button>
 

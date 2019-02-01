@@ -4,6 +4,8 @@ import dispatchMappedActions from '../../redux/dispatchMappedActions';
 
 import PuzzleSquare from './PuzzleSquare';
 
+import matrixCompressor from '../../lib/sudoku/matrixCompressor';
+
 class PuzzleBoard extends React.Component {
   constructor(props) {
     super(props);
@@ -46,8 +48,11 @@ class PuzzleBoard extends React.Component {
    * Uses the background determination function
    * @returns {Array} of PuzzleSquare elements
    */
-  buildPuzzle() {
+  buildPuzzle(puzzle) {
     const sudokuSizeLimit = 8; // Array index representation of a Sudoku puzzle size (9 x 9 squares), 
+    console.log('puzzle on board: ', puzzle);
+    const initialPuzzleMatrix = matrixCompressor.decompress(puzzle.storage.initial);
+
     let row = 0; // Row counter
     let column = 0; // Column counter
     let elements = []; // Built element storage
@@ -56,12 +61,17 @@ class PuzzleBoard extends React.Component {
       This best suits the needs of assigning the elements
     */
     while (true) {
+      let assignedValue = puzzle.matrix[row][column]; // grab the assigned value out of the puzzle matrix
+      // let isInitialValue = initialPuzzleMatrix[row][column] !== ''; // if the value in the inital matrix isn't empty
+
       // Create a new PuzzleSquare, and assign the coordinates and background
       let assignedElement = (
         <PuzzleSquare 
           key={`${row}${column}`} 
           coordinates={`${row}-${column}`} 
           background={this.determineBackground(row, column)}
+          value={assignedValue}
+          // isInitialValue={isInitialValue}
         />
       );
 
@@ -72,17 +82,19 @@ class PuzzleBoard extends React.Component {
       if (column === sudokuSizeLimit && row === sudokuSizeLimit) {
         break;
       }
+
       column === sudokuSizeLimit ? (column = 0, row++): column++;
     }
     return elements;
   }
 
   render() {
+    const { puzzle } = this.props;
 
     return (
         <div className="puzzle-container">
           <div className="puzzle-grid">
-            {this.buildPuzzle()}
+            {this.buildPuzzle(puzzle)}
           </div>
 
           {/* <div className="puzzle-options display-flex-row flex-align-center flex-justify-around">

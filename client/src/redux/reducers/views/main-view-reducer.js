@@ -1,4 +1,5 @@
 import * as types from '../../types';
+import SudokuMatrix from '../../../lib/sudoku/SudokuMatrix';
 
 const INITIAL_STATE = () => ({
   puzzle: {
@@ -6,6 +7,7 @@ const INITIAL_STATE = () => ({
     fetching: false,
     error: false,
     errorMessage: '',
+    matrix: new SudokuMatrix(),
     storage: {}
   }
 });
@@ -34,6 +36,10 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
 
     case types.SET_MAIN_VIEW_PUZZLE_STORAGE:
       newState.puzzle.storage = action.payload.data;
+      return newState;
+    
+    case types.SET_MAIN_VIEW_PUZZLE_MATRIX:
+      newState.puzzle.matrix = action.payload.matrix;
       return newState;
     
     default:

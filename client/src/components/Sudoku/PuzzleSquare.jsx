@@ -67,6 +67,7 @@ class PuzzleSquare extends React.Component {
   }
 
   render() {
+    const { background, isInitialValue, value } = this.props;
 
     let coordinates = this.props.coordinates.split('-');
     let row = coordinates[0];
@@ -75,10 +76,12 @@ class PuzzleSquare extends React.Component {
     return (
       <div className="grid-item display-flex-row flex-align-center flex-justify-center">
         <input 
-          className={`puzzle-box ${this.props.background}`} 
+          className={`puzzle-box ${background}`} 
           placeholder={this.state.placeholder} 
-          value={this.state.value} 
-          onKeyDown={(e) => {this.updateValue(e.keyCode)}}
+          value={value}
+          // readOnly={isInitialValue}
+          
+          onKeyDown={(e) => this.updateValue(e.keyCode)}
           onFocus={() => this.updatePlaceholder(this.state.value)} 
           onBlur={() => this.replaceValueWithPlaceholder()}
         />

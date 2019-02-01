@@ -1,28 +1,45 @@
-module.exports.compress = (matrix, key) => {
+const _ROW_KEY = 'row';
+const _VALUE_SEPARATOR = ',';
+
+module.exports.compress = (matrix) => {
+  // create storage for the compressed matrix
   let compressedMatrix = '';
+
+  // iterate through each row in the matrix
   matrix.forEach((row, index) => {
+    // create storage for the compressed row
     let compressedRow = '';
-    let compressedEnd = index === matrix.length - 1 ? '' : 'row';
-    row.forEach((value, column) => {
+    
+    // might be able to remove this
+    let compressedEnd = index === matrix.length - 1 ? '' : _ROW_KEY;
+
+    // for each value in the row
+    row.forEach(value => {
       if (value === '') {
-        compressedRow += key;
+        // if the value is empty, add the 
+        compressedRow += _VALUE_SEPARATOR;
       } else {
-        compressedRow += value + key;
+        compressedRow += value + _VALUE_SEPARATOR;
       }
     });
+    // add the compressed row with the 
     compressedMatrix += compressedRow + compressedEnd;
-  })
+  });
+
+  // return the compressed matrix string
   return compressedMatrix;
 };
 
-module.exports.decompress = (compressedMatrix, key) => {
-  let splitCompressed = compressedMatrix.split(`${key}row`);
+module.exports.decompress = (compressedMatrix) => {
+  let splitCompressed = compressedMatrix.split(`${_VALUE_SEPARATOR}${_ROW_KEY}`);
+
   let decompressedMatrix = splitCompressed.map((row, index) => {
     if (index === splitCompressed.length - 1) {
-      return row.split(key).slice(0, -1);
+      return row.split(_VALUE_SEPARATOR).slice(0, -1);
     }
-    return row.split(key);
+    return row.split(_VALUE_SEPARATOR);
   });
+  
   return decompressedMatrix;
 };
 
