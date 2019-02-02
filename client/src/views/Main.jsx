@@ -6,6 +6,8 @@ import dispatchMappedActions from '../redux/dispatchMappedActions';
 import Footer from '../components/Footer/'
 import GameNavigation from '../components/GameNavigation/';
 import PuzzleBoard from '../components/Sudoku/PuzzleBoard';
+import PuzzleSummary from '../components/Sudoku/PuzzleSummary';
+import PuzzleTimer from '../components/Sudoku/PuzzleTimer';
 
 import difficultySettings from '../lib/difficultySettings';
 
@@ -39,6 +41,7 @@ class Main extends React.Component {
 
   render() {
     const { puzzleLoaded } = this.state;
+    const { puzzle } = this.props.views.main;
 
     return (
       <main className="main-view-layout">
@@ -54,32 +57,34 @@ class Main extends React.Component {
         
         <div className="main-view-container">
           <div className="puzzle-layout-wrapper">
+
             <div className="left-track">
               <div className="inner-wrapper">
-                <div className="puzzle-summary-wrapper">
-                  <h4>{`Puzzle #${this.props.views.main.puzzle.storage.id}`}</h4>
-                  <div className="puzzle-difficulty-wrapper">Difficulty:<span>{this.props.views.main.puzzle.storage.difficulty}</span></div>
-                </div>
-                <div className="puzzle-timer-wrapper">
-                  <h4>Elapsed Time</h4>
-                  <div className="puzzle-timer-container">
-                    Timer Container
-                  </div>
-                </div>
+
+                {/* PUZZLE SUMMARY */}
+                <PuzzleSummary
+                  difficulty={puzzle.storage.difficulty} 
+                  puzzleId={puzzle.storage.id}
+                />
+
+                {/* PUZZLE TIMER */}
+                <PuzzleTimer />
+
               </div>
             </div>
+            
             {
               puzzleLoaded ?
                 <PuzzleBoard
-                  puzzle={this.props.views.main.puzzle}
+                  puzzle={puzzle}
                   updateFunction={this.props.actions.setMainViewPuzzleSquare}
                 /> :
                 null
             }
-            <div className="right-track">
+            {/* <div className="right-track">
               <div className="inner-wrapper">
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
     
