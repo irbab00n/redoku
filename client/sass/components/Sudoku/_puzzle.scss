@@ -1,14 +1,32 @@
 /* PUZZLE VALUES */
 $puzzle-grid-dimension: 540px;
+$side-track-dimension: 280px;
 
-/* Puzzle Grid */
 
+/* PUZZLE LAYOUT WRAPPER */
+.puzzle-layout-wrapper {
+  @include flex;
+}
+
+/* PUZZLE LAYOUT SIDE TRACKS SHARED */
+.puzzle-layout-wrapper > .left-track, .puzzle-layout-wrapper > .right-track {
+  width: $side-track-dimension;
+
+  & > .inner-wrapper {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+
+/* Puzzle Container */
 .puzzle-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Puzzle Grid */
 .puzzle-grid {
   @include grid;
   width: $puzzle-grid-dimension;

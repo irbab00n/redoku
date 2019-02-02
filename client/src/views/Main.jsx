@@ -53,14 +53,34 @@ class Main extends React.Component {
         />
         
         <div className="main-view-container">
-          {
-            puzzleLoaded ?
-              <PuzzleBoard
-                puzzle={this.props.views.main.puzzle}
-                updateFunction={this.props.actions.setMainViewPuzzleSquare}
-              /> :
-              null
-          }
+          <div className="puzzle-layout-wrapper">
+            <div className="left-track">
+              <div className="inner-wrapper">
+                <div className="puzzle-summary-wrapper">
+                  <h4>{`Puzzle #${this.props.views.main.puzzle.storage.id}`}</h4>
+                  <div className="puzzle-difficulty-wrapper">Difficulty:<span>{this.props.views.main.puzzle.storage.difficulty}</span></div>
+                </div>
+                <div className="puzzle-timer-wrapper">
+                  <h4>Elapsed Time</h4>
+                  <div className="puzzle-timer-container">
+                    Timer Container
+                  </div>
+                </div>
+              </div>
+            </div>
+            {
+              puzzleLoaded ?
+                <PuzzleBoard
+                  puzzle={this.props.views.main.puzzle}
+                  updateFunction={this.props.actions.setMainViewPuzzleSquare}
+                /> :
+                null
+            }
+            <div className="right-track">
+              <div className="inner-wrapper">
+              </div>
+            </div>
+          </div>
         </div>
     
         <Footer />

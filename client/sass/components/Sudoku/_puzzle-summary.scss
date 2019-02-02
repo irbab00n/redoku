@@ -1,0 +1,26 @@
+/* PUZZLE SUMMARY VALUES */
+
+
+.puzzle-summary-wrapper {
+  @include flex; @include flex-column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.puzzle-summary-wrapper > * {
+  margin-bottom: 20px;
+}
+
+.puzzle-summary-wrapper > h4 {
+  font-size: 24px;
+  margin-top: 0px;
+}
+
+.puzzle-difficulty-wrapper {
+  font-family: Helvetica, sans-serif;
+  font-size: 18px; font-size: 600;
+}
+.puzzle-difficulty-wrapper > span {
+  margin-left: 10px;
+  font-size: 16px;
+}
+

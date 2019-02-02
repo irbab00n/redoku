@@ -1,0 +1,18 @@
+/* PUZZLE TIMER VALUES */
+
+.puzzle-timer-wrapper {
+  @include flex; @include flex-column;
+}
+
+.puzzle-timer-wrapper > h4 {
+  font-size: 24px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.puzzle-timer-container {
+  @include flex; @include align-center; @include justify-center;
+  background-color: $indigo-400;
+  margin: 20px;
+  min-height: 48px;
+}

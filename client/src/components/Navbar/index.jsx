@@ -20,9 +20,9 @@ export default class Navbar extends React.Component {
             logoURL={logoURL}
             title={title}
           />
-          <NavLinkList 
-            links={links}
-          />
+          <div className="navbar-settings-wrapper">
+            <i className="fas fa-cog"></i>
+          </div>
         </div>
       </header>
 

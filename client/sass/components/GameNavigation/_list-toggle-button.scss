@@ -1,0 +1,53 @@
+/* QUICKPLAY BUTTON VALUES */
+$list-toggle-max-height: 48px;
+$list-toggle-min-width: 100px;
+$list-toggle-hover-shadow-color: rgba(25, 25, 25, 0.2);
+
+button.list-toggle {
+  @include transition(0.2s);
+  cursor: pointer;
+  background-color: $white;
+  border: none;
+  border-radius: 8px;
+  color: $blue-grey-900;
+  font-size: 20px; font-weight: 600;
+  max-height: $list-toggle-max-height; min-width: $list-toggle-min-width;
+  overflow: hidden;
+  padding: 0;
+
+  &:hover {
+    background-color: $indigo-50;
+    @include box-shadow(0px, 0px, 8px, 0.2px, $list-toggle-hover-shadow-color);
+  }
+
+  &:active {
+    background-color: $indigo-100;
+  }
+}
+/* BUTTON TITLE */
+button.list-toggle > span {
+  @include flex; @include align-center; @include justify-center;
+  min-height: $list-toggle-max-height; min-width: $list-toggle-min-width;
+  position: relative;
+  padding: 0 20px;
+
+}
+
+/* QUICKPLAY BUTTON ANIMATIONS */
+@keyframes quickplay-focus {
+  0%      { transform: rotate(0deg); }
+  25%     { transform: rotate(-5deg); }
+  75%     { transform: rotate(5deg); }
+  100%    { transform: rotate(0deg); }
+}
+
+@keyframes quickplay-speed {
+  0%      { left: 0; }
+  10%     { left: -10px; transform: skewY(-2deg); }
+  30%     { left: $list-toggle-min-width + 20px; opacity: 1; transform: skewY(2deg); }
+  31%     { opacity: 0; transform: skewY(0deg); }
+  40%     { left: 0; }
+  41%     { opacity: 0; }
+  80%     { opacity: 1; }
+  100%    { opacity: 1; }
+}

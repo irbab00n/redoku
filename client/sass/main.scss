@@ -10,10 +10,14 @@
 /* COMPONENTS SASS FILES */
 @import "components/GameNavigation/difficulty-dropdown";
 @import "components/GameNavigation/index";
+@import "components/GameNavigation/list-toggle-button";
 @import "components/GameNavigation/quickplay-button";
 @import "components/Sudoku/puzzle";
+@import "components/Sudoku/puzzle-summary";
+@import "components/Sudoku/puzzle-timer";
 @import "components/footer";
 @import "components/navbar";
+@import "components/navbar-settings";
 
 /* VIEWS SASS FILES */
 @import "views/main-view-layout";
