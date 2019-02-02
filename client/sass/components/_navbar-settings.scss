@@ -1,3 +1,19 @@
-.navbar-settings-wrapper {
-  
+.navbar-settings-wrapper > i {
+  @include transition(0.2s);
+  cursor: pointer;
+  border-radius: 50%;
+  color: $indigo-100;
+  font-size: 24px;
+  padding: 6px;
+
+  &:hover {
+    text-shadow: 0px 0px 0.2px rgba(25, 25, 25, 0.6);
+    color: $indigo-200;
+  }
+
+  &:active {
+    background-color: $indigo-100;
+    text-shadow: 0px 0px 0.4px rgba(25, 25, 25, 0.8);
+    color: $indigo-300;
+  }
 }
