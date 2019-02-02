@@ -35,7 +35,7 @@ $puzzle-grid-dimension: 540px;
   cursor: pointer;
   height: 90%;
   width: 90%;
-  // color: $indigo-700;
+  color: $indigo-700;
   font-family: Helvetica, sans-serif;
   font-size: 36px; font-weight: 500;
   text-align: center;
@@ -43,7 +43,7 @@ $puzzle-grid-dimension: 540px;
   border-radius: 4px;
 
   &::placeholder {
-    color: $indigo-400;
+    color: $indigo-300;
   }
 
   &:hover, &:focus {
@@ -66,4 +66,5 @@ $puzzle-grid-dimension: 540px;
 .initial-bg {
   color: $blue-grey-900;
   font-weight: 600;
+  outline-color: $red;
 }

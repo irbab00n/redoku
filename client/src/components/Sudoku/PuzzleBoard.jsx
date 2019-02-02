@@ -92,16 +92,17 @@ class PuzzleBoard extends React.Component {
   render() {
     const { puzzle } = this.props;
 
+    // console.log('current puzzle matrix: ', puzzle.matrix);
+
     return (
         <div className="puzzle-container">
           <div className="puzzle-grid">
             {this.buildPuzzle(puzzle)}
           </div>
 
-          {/* <div className="puzzle-options display-flex-row flex-align-center flex-justify-around">
-            <button onClick={() => this.props.actions.checkPuzzleSolution()}>Submit Puzzle</button>
-            <button onClick={() => this.props.actions.checkPuzzleSolution()}>Submit Puzzle</button>
-          </div> */}
+          <div className="puzzle-options display-flex-row flex-align-center flex-justify-around">
+            <button onClick={() => this.props.actions.checkMainViewPuzzleSolution(puzzle.matrix)}>Submit Puzzle</button>
+          </div>
         </div>
     );
   }

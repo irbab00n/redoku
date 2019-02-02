@@ -2,6 +2,45 @@ import * as types from '../../types';
 import axios from 'axios';
 import matrixCompressor from '../../../lib/sudoku/matrixCompressor';
 import SudokuMatrix from '../../../lib/sudoku/SudokuMatrix';
+import { checkGrid } from '../../../lib/sudoku/sudoku';
+
+// CHECK_MAIN_VIEW_PUZZLE_SOLUTION
+/**
+ * Submits the puzzle for solution
+ * @param {Matrix} matrix - Matrix storage of the current puzzle solution
+ */
+export const checkMainViewPuzzleSolution = matrix => {
+  let { completed, testResult } = checkGrid(matrix);
+  console.log('was the puzzle completed?: ', completed);
+  console.log('does it pass sudoku rules?: ', testResult);
+
+  return dispatch => {
+    // // Rules we need to take care of
+
+    // // - if the test is completed and the test result is valid
+    // if (completed && testResult) {
+    //   // Save the solution
+    //   // Trigger the win state
+    // }
+    
+    // // - if the test is completed and the test result is not valid
+    // if (completed && !testResult) {
+    //   // Trigger the fail state
+    //   // Warn the user they have not completed the puzzle
+    // }
+
+    // // - if the test is not completed and the test result is valid
+    // if (!completed && testResult) {
+    //   // Trigger the fail state
+    //   // 'Good work so far' message
+    // }
+
+    // // - if the test is not completed and the test result is not valid
+    // if (!completed && !testResult) {
+      
+    // }
+  };
+};
 
 /**
  * @todo -UPDATE Development/Production API's will need to be created and updated
@@ -36,7 +75,6 @@ export const fetchMainViewPuzzle = (params = {}) => {
       });
   };
 };
-
 
 // SET_MAIN_VIEW_PUZZLE_ERROR
 /**
