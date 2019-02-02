@@ -4,6 +4,8 @@ import matrixCompressor from '../../../lib/sudoku/matrixCompressor';
 import SudokuMatrix from '../../../lib/sudoku/SudokuMatrix';
 import { checkGrid } from '../../../lib/sudoku/sudoku';
 
+const API_URL = process.env.API_URL || 'http://localhost:8080';
+
 // CHECK_MAIN_VIEW_PUZZLE_SOLUTION
 /**
  * Submits the puzzle for solution
@@ -41,11 +43,6 @@ export const checkMainViewPuzzleSolution = matrix => {
     // }
   };
 };
-
-/**
- * @todo -UPDATE Development/Production API's will need to be created and updated
- */
-const API_URL = process.env.API_URL || 'http://localhost:8080';
 
 /**
  * Fetches a puzzle for the main view 'Quickplay' puzzle
