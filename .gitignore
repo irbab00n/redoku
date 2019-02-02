@@ -65,7 +65,6 @@ typings/
 /public/bundle.js.map
 /public/styles.css
 /public/styles.css.map
-/public/*.png
 
 # Working files
 /client/working-files
