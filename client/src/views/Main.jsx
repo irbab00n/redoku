@@ -7,6 +7,8 @@ import Footer from '../components/Footer/'
 import GameNavigation from '../components/GameNavigation/';
 import PuzzleBoard from '../components/Sudoku/PuzzleBoard';
 
+import difficultySettings from '../lib/difficultySettings';
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +48,8 @@ class Main extends React.Component {
         </Helmet>
     
         <GameNavigation
-          quickplayClickHandler={this.props.actions.fetchMainViewPuzzle}
+          difficultySettings={difficultySettings}
+          puzzleFetcher={this.props.actions.fetchMainViewPuzzle}
         />
         
         <div className="main-view-container">

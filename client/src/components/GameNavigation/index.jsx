@@ -9,18 +9,21 @@ export default class GameNavigation extends React.Component {
     };
   }
   render() {
-    const { quickplayClickHandler = () => {} } = this.props;
+    const { difficultySettings, puzzleFetcher = () => {} } = this.props;
 
     return (
 
       <section id="game-navigation">
         {/* QUICKPLAY BUTTON */}
-        <button className="quickplay" onClick={quickplayClickHandler}>
+        <button className="quickplay" onClick={puzzleFetcher}>
           <span tabIndex="0">Quickplay</span>
         </button>
 
         {/* DIFFICULTY DROPDOWN */}
-        <DifficultyDropdown />
+        <DifficultyDropdown
+          difficultySettings={difficultySettings}
+          puzzleFetcher={puzzleFetcher}
+        />
 
         {/* RULES TOGGLE */}
         {/* <div>Rules Button</div> */}

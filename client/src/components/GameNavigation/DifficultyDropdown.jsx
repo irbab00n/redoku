@@ -6,7 +6,18 @@ export default class DifficultyDropdown extends React.Component {
     this.state = {
       showDropdown: false
     };
+    this.buildDifficultyListItems = this.buildDifficultyListItems.bind(this);
     this.toggleShowDropdown = this.toggleShowDropdown.bind(this);
+  }
+
+  buildDifficultyListItems(difficulties) {
+    const { puzzleFetcher } = this.props;
+    return difficulties.map(setting => (
+      <li onClick={() => {
+        puzzleFetcher({difficulty: setting.difficulty});
+        this.toggleShowDropdown();
+      }} key={`difficulty-${setting.title}`}><a>{setting.title}</a></li>
+    ));
   }
 
   toggleShowDropdown() {
@@ -17,6 +28,7 @@ export default class DifficultyDropdown extends React.Component {
 
   render() {
     const { showDropdown } = this.state;
+    const { difficultySettings } = this.props;
 
     return (
 
@@ -33,11 +45,7 @@ export default class DifficultyDropdown extends React.Component {
           <ul className={showDropdown ? 'show' : ''}>
             {
               showDropdown ?
-                [
-                  <li><a>Easy</a></li>,
-                  <li><a>Medium</a></li>,
-                  <li><a>Hard</a></li>
-                ] : 
+                this.buildDifficultyListItems(difficultySettings) : 
                 null
             }
           </ul>

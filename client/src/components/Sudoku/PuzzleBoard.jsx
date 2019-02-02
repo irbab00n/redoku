@@ -101,7 +101,7 @@ class PuzzleBoard extends React.Component {
           </div>
 
           <div className="puzzle-options display-flex-row flex-align-center flex-justify-around">
-            <button onClick={() => this.props.actions.checkMainViewPuzzleSolution(puzzle.matrix)}>Submit Puzzle</button>
+            <button onClick={() => this.props.actions.checkMainViewPuzzleSolution(JSON.parse(JSON.stringify(puzzle.matrix)))}>Submit Puzzle</button>
           </div>
         </div>
     );
