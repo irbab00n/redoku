@@ -29,8 +29,8 @@ export default class Puzzle extends React.Component {
   render() {
 
     const {
-      leftTrackConfig,
-      rightTrackConfig,
+      leftTrackConfig = {},
+      rightTrackConfig = {},
       loaded,
       puzzle,
       updateFunction
@@ -43,7 +43,7 @@ export default class Puzzle extends React.Component {
         <div className="left-track">
           <div className="inner-wrapper">
             {
-              this.buildSideTrackBody(leftTrackConfig.widgets)
+              this.buildSideTrackBody(leftTrackConfig.widgets || [])
             }
           </div>
         </div> 
@@ -58,7 +58,7 @@ export default class Puzzle extends React.Component {
         <div className="right-track">
           <div className="inner-wrapper">
             {
-              this.buildSideTrackBody(rightTrackConfig.widgets)
+              this.buildSideTrackBody(rightTrackConfig.widgets || [])
             }
           </div>
         </div>
