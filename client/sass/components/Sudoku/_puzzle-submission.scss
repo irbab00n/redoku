@@ -1,0 +1,39 @@
+/* PUZZLE SUBMISSION VALUES */
+$puzzle-submission-min-height: 48px;
+$puzzle-submission-min-width: 120px;
+
+.puzzle-submission-wrapper {
+  width: 100%;
+}
+.puzzle-submission-wrapper > .inner-wrapper {
+  @include flex; @include justify-center;
+  margin: 20px 0px;
+  padding: 0 10px;
+}
+.puzzle-submission-wrapper > .inner-wrapper > * {
+  margin: 0 10px;
+}
+
+button.puzzle-submission, button.puzzle-timer {
+  @include transition(0.2s);
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 20px; font-weight: 600;
+  height: $puzzle-submission-min-height;
+  min-width: $puzzle-submission-min-width;
+  padding: 0 20px;
+}
+
+button.puzzle-submission {
+  background-color: $indigo-400;
+  color: $white;
+
+  &:hover {
+    background-color: $indigo-500;
+    @include box-shadow(0px, 0px, 8px, 0.2px, $quickplay-button-hover-shadow-color);
+  }
+
+  &:active {
+    background-color: $indigo-900;
+  }
+}

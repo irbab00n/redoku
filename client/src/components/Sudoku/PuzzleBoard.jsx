@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import dispatchMappedActions from '../../redux/dispatchMappedActions';
 
-import PuzzleControls from './PuzzleControls';
 import PuzzleSquare from './PuzzleSquare';
+import PuzzleSubmission from './PuzzleSubmission';
 
 import matrixCompressor from '../../lib/sudoku/matrixCompressor';
 
@@ -101,7 +101,7 @@ class PuzzleBoard extends React.Component {
             {this.buildPuzzle(puzzle)}
           </div>
 
-          <PuzzleControls
+          <PuzzleSubmission
             puzzle={puzzle}
             checkSolutionFunction={checkSolutionFunction}
           />

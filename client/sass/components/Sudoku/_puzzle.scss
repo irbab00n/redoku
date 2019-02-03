@@ -36,12 +36,6 @@ $side-track-dimension: 280px;
   padding: 10px;
 }
 
-.puzzle-options {
-  width: $puzzle-grid-dimension;
-  height: 100px;
-  background-color: rgba(225, 225, 225, 1.0);
-}
-
 .grid-item {
   @include flex; @include align-center; @include justify-center;
   // border: 1px solid;
