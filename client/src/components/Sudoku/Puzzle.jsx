@@ -33,6 +33,7 @@ export default class Puzzle extends React.Component {
       rightTrackConfig = {},
       loaded,
       puzzle,
+      checkSolutionFunction,
       updateFunction
     } = this.props;
 
@@ -50,6 +51,7 @@ export default class Puzzle extends React.Component {
         {
           loaded ?
             <PuzzleBoard
+              checkSolutionFunction={checkSolutionFunction}
               puzzle={puzzle}
               updateFunction={updateFunction}
             /> :

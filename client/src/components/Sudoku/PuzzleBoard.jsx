@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import dispatchMappedActions from '../../redux/dispatchMappedActions';
 
+import PuzzleControls from './PuzzleControls';
 import PuzzleSquare from './PuzzleSquare';
 
 import matrixCompressor from '../../lib/sudoku/matrixCompressor';
@@ -90,7 +91,7 @@ class PuzzleBoard extends React.Component {
   }
 
   render() {
-    const { puzzle } = this.props;
+    const { checkSolutionFunction, puzzle } = this.props;
 
     // console.log('current puzzle matrix: ', puzzle.matrix);
 
@@ -100,9 +101,11 @@ class PuzzleBoard extends React.Component {
             {this.buildPuzzle(puzzle)}
           </div>
 
-          <div className="puzzle-options display-flex-row flex-align-center flex-justify-around">
-            <button onClick={() => this.props.actions.checkMainViewPuzzleSolution(JSON.parse(JSON.stringify(puzzle.matrix)))}>Submit Puzzle</button>
-          </div>
+          <PuzzleControls
+            puzzle={puzzle}
+            checkSolutionFunction={checkSolutionFunction}
+          />
+
         </div>
     );
   }

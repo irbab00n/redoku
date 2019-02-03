@@ -75,10 +75,10 @@ class Main extends React.Component {
             leftTrackConfig={leftTrackConfig}
             puzzle={puzzle}
             loaded={puzzleLoaded}
+            checkSolutionFunction={this.props.actions.checkMainViewPuzzleSolution}
             updateFunction={this.props.actions.setMainViewPuzzleSquare}
           /> 
         </div>
-
     
         <Footer />
         
