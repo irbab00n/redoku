@@ -37,6 +37,8 @@ export default class Puzzle extends React.Component {
       updateFunction
     } = this.props;
 
+    console.log('puzzle: ', puzzle);
+
     return (
 
       <div className="puzzle-layout-wrapper">

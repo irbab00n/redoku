@@ -3,12 +3,14 @@ import SudokuMatrix from '../../../lib/sudoku/SudokuMatrix';
 
 const INITIAL_STATE = () => ({
   puzzle: {
-    fetched: false,
-    fetching: false,
     error: false,
     errorMessage: '',
+    fetched: false,
+    fetching: false,
     matrix: new SudokuMatrix(),
-    storage: {}
+    storage: {},
+    submissionMessage: '',
+    winState: false
   }
 });
 
@@ -48,6 +50,14 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
       [row, column] = action.payload.coordinates.split('-');
       
       newState.puzzle.matrix[row][column] = action.payload.value;
+      return newState;
+
+    case types.SET_MAIN_VIEW_PUZZLE_SUBMISSION_MESSAGE:
+      newState.puzzle.submissionMessage = action.payload.message;
+      return newState;
+
+    case types.SET_MAIN_VIEW_PUZZLE_WIN_STATE:
+      newState.puzzle.winState = action.payload.flag;
       return newState;
     
     default:

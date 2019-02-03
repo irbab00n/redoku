@@ -17,30 +17,33 @@ export const checkMainViewPuzzleSolution = matrix => {
   console.log('does it pass sudoku rules?: ', testResult);
 
   return dispatch => {
-    // // Rules we need to take care of
+    // Rules we need to take care of
 
-    // // - if the test is completed and the test result is valid
-    // if (completed && testResult) {
-    //   // Save the solution
-    //   // Trigger the win state
-    // }
+    // - if the test is completed and the test result is valid
+    if (completed && testResult) {
+      // Save the solution
+      // Trigger the win state
+      dispatch(setMainViewPuzzleWinStateAction(true));
+    }
     
-    // // - if the test is completed and the test result is not valid
-    // if (completed && !testResult) {
-    //   // Trigger the fail state
-    //   // Warn the user they have not completed the puzzle
-    // }
+    // - if the test is completed and the test result is not valid
+    if (completed && !testResult) {
+      // Trigger the fail state
+      dispatch(setMainViewPuzzleWinStateAction(false));
+      // Warn the user they have not completed the puzzle
+    }
 
-    // // - if the test is not completed and the test result is valid
-    // if (!completed && testResult) {
-    //   // Trigger the fail state
-    //   // 'Good work so far' message
-    // }
+    // - if the test is not completed and the test result is valid
+    if (!completed && testResult) {
+      // Trigger the fail state
+      dispatch(setMainViewPuzzleWinStateAction(false));
+      // 'Good work so far' message
+    }
 
-    // // - if the test is not completed and the test result is not valid
-    // if (!completed && !testResult) {
-      
-    // }
+    // - if the test is not completed and the test result is not valid
+    if (!completed && !testResult) {
+      dispatch(setMainViewPuzzleWinStateAction(false));
+    }
   };
 };
 
@@ -185,5 +188,37 @@ const setMainViewPuzzleSquareAction = (coordinates, value) => ({
   payload: {
     coordinates,
     value
+  }
+});
+
+
+// SET_MAIN_VIEW_PUZZLE_SUBMISSION_MESSAGE
+/**
+ * Manages the puzzle submission messasge
+ * @param {String} message - Message to show the user when they submit the puzzle
+ */
+export const setMainViewPuzzleSubmissionMessage = message => {
+  return dispatch => dispatch(setMainViewPuzzleSubmissionMessageAction(message));
+};
+const setMainViewPuzzleSubmissionMessageAction = message => ({
+  type: types.SET_MAIN_VIEW_PUZZLE_SUBMISSION_MESSAGE,
+  payload: {
+    message
+  }
+});
+
+
+// SET_MAIN_VIEW_PUZZLE_WIN_STATE
+/**
+ * Responsible for controlling the 'Win' state of the application
+ * @param {Boolean} flag - Can be either 'true' or 'false'
+ */
+export const setMainViewPuzzleWinState = flag => {
+  return dispatch => dispatch(setMainViewPuzzleWinStateAction(flag));
+};
+const setMainViewPuzzleWinStateAction = flag => ({
+  type: types.SET_MAIN_VIEW_PUZZLE_WIN_STATE,
+  payload: {
+    flag
   }
 });
