@@ -26,11 +26,11 @@ export default class GameNavigation extends React.Component {
         </button>
 
         {/* RULES TOGGLE */}
-        <div className="end-container">
+        {/* <div className="end-container">
           <button className="list-toggle">
             <span tabIndex="0">More Puzzles</span>
           </button>
-        </div>
+        </div> */}
         {/* <div>Rules Button</div> */}
       </section>
 

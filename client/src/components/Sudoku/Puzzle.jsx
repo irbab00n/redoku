@@ -4,14 +4,37 @@ import PuzzleBoard from './PuzzleBoard';
 import PuzzleSummary from './PuzzleSummary';
 import PuzzleTimer from './PuzzleTimer';
 
+const widgetCache = {
+  'summary': ({ difficulty, puzzleId }) => (
+    <PuzzleSummary difficulty={difficulty} puzzleId={puzzleId}/>
+  ),
+  'timer': () => (
+    <PuzzleTimer />
+  )
+};
+
 export default class Puzzle extends React.Component {
   constructor(props) {
     super(props);
+    this.buildSideTrackBody = this.buildSideTrackBody.bind(this);
+  }
+
+  buildSideTrackBody(widgets) {
+    return widgets.map(widget => {
+      let widgetContstructor = widgetCache[widget.tag];
+      return widgetContstructor(widget.data);
+    });
   }
 
   render() {
 
-    const { puzzle, loaded, updateFunction } = this.props;
+    const {
+      leftTrackConfig,
+      rightTrackConfig,
+      loaded,
+      puzzle,
+      updateFunction
+    } = this.props;
 
     return (
 
@@ -19,19 +42,11 @@ export default class Puzzle extends React.Component {
 
         <div className="left-track">
           <div className="inner-wrapper">
-
-            {/* PUZZLE SUMMARY */}
-            <PuzzleSummary
-              difficulty={puzzle.storage.difficulty} 
-              puzzleId={puzzle.storage.id}
-            />
-
-            {/* PUZZLE TIMER */}
-            <PuzzleTimer />
-
+            {
+              this.buildSideTrackBody(leftTrackConfig.widgets)
+            }
           </div>
-        </div>
-        
+        </div> 
         {
           loaded ?
             <PuzzleBoard
@@ -42,6 +57,9 @@ export default class Puzzle extends React.Component {
         }
         <div className="right-track">
           <div className="inner-wrapper">
+            {
+              this.buildSideTrackBody(rightTrackConfig.widgets)
+            }
           </div>
         </div>
 

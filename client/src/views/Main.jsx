@@ -41,6 +41,36 @@ class Main extends React.Component {
     const { puzzleLoaded } = this.state;
     const { puzzle } = this.props.views.main;
 
+    const leftTrackConfig = {
+      show: true,
+      widgets: [
+        {
+          tag: 'summary',
+          data: {
+            puzzleId: puzzle.storage.id,
+            difficulty: puzzle.storage.difficulty
+          }
+        },
+        {
+          tag: 'timer',
+          data: {}
+        }
+      ]
+    };
+
+    const rightTrackConfig = {
+      show: true,
+      widgets: [
+        {
+          tag: 'summary',
+          data: {
+            puzzleId: puzzle.storage.id,
+            difficulty: puzzle.storage.difficulty
+          }
+        },
+      ]
+    };
+
     return (
       <main className="main-view-layout">
 
@@ -55,6 +85,8 @@ class Main extends React.Component {
         
         <div className="main-view-container">
           <Puzzle
+            leftTrackConfig={leftTrackConfig}
+            rightTrackConfig={rightTrackConfig}
             puzzle={puzzle}
             loaded={puzzleLoaded}
             updateFunction={this.props.actions.setMainViewPuzzleSquare}
