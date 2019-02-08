@@ -10,6 +10,13 @@ const PuzzleSubmission = ({ checkSolutionFunction, puzzle }) => (
         Submit Puzzle
       </button>
     </div>
+    {
+      puzzle.submissionMessage !== '' ?
+        <div className="inner-wrapper">
+          <p>{puzzle.submissionMessage}</p>
+        </div> : null
+    }
+   
   </div>
 );
 

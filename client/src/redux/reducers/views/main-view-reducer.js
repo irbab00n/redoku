@@ -10,6 +10,7 @@ const INITIAL_STATE = () => ({
     matrix: new SudokuMatrix(),
     storage: {},
     submissionMessage: '',
+    failState: false,
     winState: false
   }
 });
@@ -54,6 +55,10 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
 
     case types.SET_MAIN_VIEW_PUZZLE_SUBMISSION_MESSAGE:
       newState.puzzle.submissionMessage = action.payload.message;
+      return newState;
+
+    case types.SET_MAIN_VIEW_PUZZLE_FAIL_STATE:
+      newState.puzzle.failState = action.payload.flag;
       return newState;
 
     case types.SET_MAIN_VIEW_PUZZLE_WIN_STATE:

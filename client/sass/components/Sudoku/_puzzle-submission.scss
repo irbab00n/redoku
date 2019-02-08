@@ -14,6 +14,11 @@ $puzzle-submission-min-width: 120px;
   margin: 0 10px;
 }
 
+.puzzle-submission-wrapper > .inner-wrapper > p {
+  font-size: 16px; font-weight: 600;
+}
+
+/* PUZZLE SUBMISSION BUTTONS SHARED */
 button.puzzle-submission, button.puzzle-timer {
   @include transition(0.2s);
   cursor: pointer;
@@ -24,6 +29,7 @@ button.puzzle-submission, button.puzzle-timer {
   padding: 0 20px;
 }
 
+/* PUZZLE SUBMISSION BUTTON SPECIFIC */
 button.puzzle-submission {
   background-color: $indigo-400;
   color: $white;

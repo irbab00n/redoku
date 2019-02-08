@@ -51,10 +51,10 @@ class Main extends React.Component {
             difficulty: puzzle.storage.difficulty
           }
         },
-        {
-          tag: 'timer',
-          data: {}
-        }
+        // {
+        //   tag: 'timer',
+        //   data: {}
+        // }
       ]
     };
 

@@ -26,7 +26,7 @@ $navbar-inner-wrapper-padding: 40px;
   @include flex;
   height: $navbar-height-full; width: 100%;
   padding: $navbar-padding-dimension 0;
-  z-index: 1000;
+  z-index: 10000;
 
   &.cosbytes-background {
     background-color: $cosbytes-blue;

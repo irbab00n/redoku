@@ -10,9 +10,35 @@ import matrixCompressor from '../../lib/sudoku/matrixCompressor';
 class PuzzleBoard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+    };
     this.buildPuzzle = this.buildPuzzle.bind(this);
     this.determineBackground = this.determineBackground.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { puzzle } = nextProps;
+    let updatedState = {};
+    let delay = 1000;
+
+    if (puzzle.failState) {
+      setTimeout(() => {
+        this.props.actions.setMainViewPuzzleFailState(false);
+      }, delay);
+    }
+
+    if (puzzle.winState) {
+      setTimeout(() => {
+        this.props.actions.setMainViewPuzzleWinState(false);
+      }, delay);
+    }
+
+    if (Object.keys(updatedState).length > 0) {
+      this.setState(updatedState);
+    }
+
+    return true;
   }
 
   /**
@@ -96,14 +122,15 @@ class PuzzleBoard extends React.Component {
     // console.log('current puzzle matrix: ', puzzle.matrix);
 
     return (
-        <div className="puzzle-container">
+        <div className={`puzzle-container ${puzzle.winState ? 'victory' : ''} ${puzzle.failState ? 'failure' : ''}`}>
+          
           <div className="puzzle-grid">
             {this.buildPuzzle(puzzle)}
           </div>
 
           <PuzzleSubmission
             puzzle={puzzle}
-            checkSolutionFunction={checkSolutionFunction}
+            checkSolutionFunction={puzzle.failState ? () => {} : checkSolutionFunction}
           />
 
         </div>

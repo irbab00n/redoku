@@ -6,6 +6,7 @@ $side-track-dimension: 280px;
 /* PUZZLE LAYOUT WRAPPER */
 .puzzle-layout-wrapper {
   @include flex;
+  @include perspective(1100px);
 }
 
 /* PUZZLE LAYOUT SIDE TRACKS SHARED */
@@ -21,9 +22,24 @@ $side-track-dimension: 280px;
 
 /* Puzzle Container */
 .puzzle-container {
+  @include transition(0.2s);
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &.failure {
+    @include animation-duration(0.6s);
+    @include animation-iteration(1);
+    @include animation-name(puzzle-failure);
+    @include animation-timing-function(ease-in-out);
+  }
+
+  &.victory {
+    @include animation-duration(10s);
+    @include animation-iteration(infinite);
+    @include animation-name(puzzle-victory);
+    @include animation-timing-function(linear);
+  }
 }
 
 /* Puzzle Grid */
@@ -79,4 +95,61 @@ $side-track-dimension: 280px;
   color: $blue-grey-900;
   font-weight: 600;
   outline-color: $red;
+}
+
+
+/* PUZZLE ANIMATIONS */
+
+@keyframes puzzle-failure {
+  0%    { transform: translateX(0px) rotateY(0deg); }
+  23%   { transform: translateX(-6px) rotateY(-3deg);}
+  48%   { transform: translateX(4px) rotateY(3deg); }
+  73%   { transform: translateX(-4px) rotateY(-3deg); }
+  98%   { transform: translateX(0px) rotateY(0deg);; }
+  100%  { transform: translateX(0px); }
+}
+
+@keyframes puzzle-victory {
+  0%    { transform: translateX(0px) translateY(0px); }
+  2%    { transform: translateY(12px); }
+  5%    { transform: translateX(-10px) translateY(0px); }
+  7%    { transform: translateY(12px); }
+  10%   { transform: translateX(-20px) translateY(0px); }
+  12%   { transform: translateY(12px); }
+  15%   { transform: translateX(-20px) translateY(0px); }
+  17%   { transform: translateY(12px); }
+  20%   { transform: translateX(-10px) translateY(0px); }
+  22%   { transform: translateY(12px); }
+  25%   { transform: translateX(0px) translateY(0px); }
+  27%   { transform: translateY(12px); }
+  30%   { transform: translateX(6px) translateY(0px); }
+  32%   { transform: translateY(12px); }
+  35%   { transform: translateX(12px) translateY(0px); }
+  37%   { transform: translateY(12px); }
+  40%   { transform: translateX(12px) translateY(0px); }
+  42%   { transform: translateY(12px); }
+  45%   { transform: translateX(6px) translateY(0px); }
+  47%   { transform: translateY(12px); }
+  50%   { transform: translateX(0px) translateY(0px); }
+  52%   { transform: translateY(12px); }
+  /* MID POINT */
+  55%   { transform: translateX(-10px) translateY(0px); }
+  57%   { transform: translateY(12px); }
+  60%   { transform: translateX(-20px) translateY(0px); }
+  62%   { transform: translateY(12px); }
+  65%   { transform: translateX(-20px) translateY(0px); }
+  67%   { transform: translateY(12px); }
+  70%   { transform: translateX(-10px) translateY(0px); }
+  72%   { transform: translateY(12px); }
+  75%   { transform: translateX(0px) translateY(0px); }
+  77%   { transform: translateY(12px); }
+  80%   { transform: translateX(6px) translateY(0px); }
+  82%   { transform: translateY(12px); }
+  85%   { transform: translateX(12px) translateY(0px); }
+  87%   { transform: translateY(12px); }
+  90%   { transform: translateX(12px) translateY(0px); }
+  92%   { transform: translateY(12px); }
+  95%   { transform: translateX(6px) translateY(0px); }
+  97%   { transform: translateY(12px); }
+  100%  { transform: translateX(0px) translateY(0px); }
 }

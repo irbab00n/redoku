@@ -24,25 +24,15 @@ export const checkMainViewPuzzleSolution = matrix => {
       // Save the solution
       // Trigger the win state
       dispatch(setMainViewPuzzleWinStateAction(true));
-    }
-    
-    // - if the test is completed and the test result is not valid
-    if (completed && !testResult) {
-      // Trigger the fail state
-      dispatch(setMainViewPuzzleWinStateAction(false));
-      // Warn the user they have not completed the puzzle
-    }
-
-    // - if the test is not completed and the test result is valid
-    if (!completed && testResult) {
-      // Trigger the fail state
-      dispatch(setMainViewPuzzleWinStateAction(false));
-      // 'Good work so far' message
+      dispatch(setMainViewPuzzleSubmissionMessageAction(`You win!`));
     }
 
     // - if the test is not completed and the test result is not valid
-    if (!completed && !testResult) {
+    if (!completed || !testResult) {
+      // Set the fail state to true, and the win state to false
+      dispatch(setMainViewPuzzleFailStateAction(true));
       dispatch(setMainViewPuzzleWinStateAction(false));
+      dispatch(setMainViewPuzzleSubmissionMessageAction(`You've got some work left to do!`));
     }
   };
 };
@@ -204,6 +194,22 @@ const setMainViewPuzzleSubmissionMessageAction = message => ({
   type: types.SET_MAIN_VIEW_PUZZLE_SUBMISSION_MESSAGE,
   payload: {
     message
+  }
+});
+
+
+// SET_MAIN_VIEW_PUZZLE_FAIL_STATE
+/**
+ * Responsible for controlling the 'Fail' state of the application
+ * @param {Boolean} flag - Can be either 'true' or 'false'
+ */
+export const setMainViewPuzzleFailState = flag => {
+  return dispatch => dispatch(setMainViewPuzzleFailStateAction(flag));
+};
+const setMainViewPuzzleFailStateAction = flag => ({
+  type: types.SET_MAIN_VIEW_PUZZLE_FAIL_STATE,
+  payload: {
+    flag
   }
 });
 
