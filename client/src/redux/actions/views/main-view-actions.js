@@ -43,27 +43,25 @@ export const checkMainViewPuzzleSolution = matrix => {
  */
 export const fetchMainViewPuzzle = (params = {}) => {
   return dispatch => {
-    dispatch(setMainViewPuzzleMatrixAction(new SudokuMatrix()));
-    dispatch(setMainViewPuzzleFetchedAction(false));
-    dispatch(setMainViewPuzzleFetchingAction(true));
-    dispatch(setMainViewPuzzleFailStateAction(false));
-    dispatch(setMainViewPuzzleWinStateAction(false));
-    axios.get(`${API_URL}/puzzle`, {params})
+    dispatch(setMainViewPuzzleMatrixAction(new SudokuMatrix()));  // Clear the current puzzle out of state
+    dispatch(setMainViewPuzzleFetchedAction(false));  // Set the fetched state to false
+    dispatch(setMainViewPuzzleFetchingAction(true));  // Set the fetching state to true
+    dispatch(setMainViewPuzzleSubmissionMessage(''));  // Reset the submission message
+    dispatch(setMainViewPuzzleFailStateAction(false));  // Reset the 'fail' state
+    dispatch(setMainViewPuzzleWinStateAction(false));  // Reset the 'win' state
+    axios.get(`${API_URL}/puzzle`, {params})  // Go get the puzzle using the supplied params
       .then(response => {
-        console.log('successful response from the puzzles API', response);
-
-        let decompressedPuzzle = matrixCompressor.decompress(response.data.initial, ',');
-        // console.log('decompressed puzzle: ', decompressedPuzzle);
-
-        dispatch(setMainViewPuzzleFetchingAction(false));
-        dispatch(setMainViewPuzzleStorageAction(response.data));
-        dispatch(setMainViewPuzzleMatrixAction(decompressedPuzzle));
-        dispatch(setMainViewPuzzleFetchedAction(true));
+        // console.log('successful response from the puzzles API', response);
+        let decompressedPuzzle = matrixCompressor.decompress(response.data.initial, ',');  // Decompress the puzzle
+        dispatch(setMainViewPuzzleFetchingAction(false));  // Set the fetching state to false
+        dispatch(setMainViewPuzzleStorageAction(response.data));  // Store the puzzle data in state
+        dispatch(setMainViewPuzzleMatrixAction(decompressedPuzzle));  // Set the puzzle matrix to the decompressed puzzle
+        dispatch(setMainViewPuzzleFetchedAction(true));  // Set the fetched state to true
       })
       .catch(error => {
         console.log('something went wrong while attempting to fetch the puzzle', error);
-        dispatch(setMainViewPuzzleErrorAction(false));
-        dispatch(setMainViewPuzzleErrorMessageAction(error));
+        dispatch(setMainViewPuzzleErrorAction(true));  // Set the error state to true
+        dispatch(setMainViewPuzzleErrorMessageAction(error));  // Set the Error Message to the error retrieved
       });
   };
 };
