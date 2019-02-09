@@ -43,7 +43,9 @@ export default class Puzzle extends React.Component {
 
       <div className="puzzle-layout-wrapper">
 
-        <div className="left-track">
+        <div className={`left-track ${puzzle.winState ? 'pyro' : ''}`}>
+          <div className="before"/>
+          <div className="after"/>
           <div className="inner-wrapper">
             {
               this.buildSideTrackBody(leftTrackConfig.widgets || [])

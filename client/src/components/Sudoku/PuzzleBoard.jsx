@@ -28,11 +28,11 @@ class PuzzleBoard extends React.Component {
       }, delay);
     }
 
-    if (puzzle.winState) {
-      setTimeout(() => {
-        this.props.actions.setMainViewPuzzleWinState(false);
-      }, delay);
-    }
+    // if (puzzle.winState) {
+    //   setTimeout(() => {
+    //     this.props.actions.setMainViewPuzzleWinState(false);
+    //   }, delay);
+    // }
 
     if (Object.keys(updatedState).length > 0) {
       this.setState(updatedState);

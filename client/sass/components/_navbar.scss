@@ -53,7 +53,6 @@ $navbar-inner-wrapper-padding: 40px;
 .navbar-inner-wrapper > .logo > img {
   @include transition(0.2s);
   height: 36px; width: 36px;
-  margin-right: 10px;
   opacity: 0.8;
 
   &:hover {

@@ -46,6 +46,8 @@ export const fetchMainViewPuzzle = (params = {}) => {
     dispatch(setMainViewPuzzleMatrixAction(new SudokuMatrix()));
     dispatch(setMainViewPuzzleFetchedAction(false));
     dispatch(setMainViewPuzzleFetchingAction(true));
+    dispatch(setMainViewPuzzleFailStateAction(false));
+    dispatch(setMainViewPuzzleWinStateAction(false));
     axios.get(`${API_URL}/puzzle`, {params})
       .then(response => {
         console.log('successful response from the puzzles API', response);

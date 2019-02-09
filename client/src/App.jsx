@@ -27,8 +27,8 @@ export default class App extends React.Component {
     return (
       <div id="application-wrapper">
         <Navbar
-          logoURL={'https://s3-us-west-1.amazonaws.com/cos-bytes.com/redux.png'}
-          title={'Redoku'}
+          logoURL={'https://s3-us-west-1.amazonaws.com/cos-bytes.com/redoku/redoku-favicon.png'}
+          title={'edoku'}
         />
         <Router history={hist}>
           <Switch>

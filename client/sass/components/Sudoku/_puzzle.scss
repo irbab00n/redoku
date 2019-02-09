@@ -35,7 +35,7 @@ $side-track-dimension: 280px;
   }
 
   &.victory {
-    @include animation-duration(10s);
+    @include animation-duration(5s);
     @include animation-iteration(infinite);
     @include animation-name(puzzle-victory);
     @include animation-timing-function(linear);
@@ -110,46 +110,30 @@ $side-track-dimension: 280px;
 }
 
 @keyframes puzzle-victory {
-  0%    { transform: translateX(0px) translateY(0px); }
-  2%    { transform: translateY(12px); }
-  5%    { transform: translateX(-10px) translateY(0px); }
-  7%    { transform: translateY(12px); }
-  10%   { transform: translateX(-20px) translateY(0px); }
-  12%   { transform: translateY(12px); }
-  15%   { transform: translateX(-20px) translateY(0px); }
-  17%   { transform: translateY(12px); }
-  20%   { transform: translateX(-10px) translateY(0px); }
-  22%   { transform: translateY(12px); }
-  25%   { transform: translateX(0px) translateY(0px); }
-  27%   { transform: translateY(12px); }
-  30%   { transform: translateX(6px) translateY(0px); }
-  32%   { transform: translateY(12px); }
-  35%   { transform: translateX(12px) translateY(0px); }
-  37%   { transform: translateY(12px); }
-  40%   { transform: translateX(12px) translateY(0px); }
-  42%   { transform: translateY(12px); }
-  45%   { transform: translateX(6px) translateY(0px); }
-  47%   { transform: translateY(12px); }
-  50%   { transform: translateX(0px) translateY(0px); }
-  52%   { transform: translateY(12px); }
-  /* MID POINT */
-  55%   { transform: translateX(-10px) translateY(0px); }
-  57%   { transform: translateY(12px); }
-  60%   { transform: translateX(-20px) translateY(0px); }
-  62%   { transform: translateY(12px); }
-  65%   { transform: translateX(-20px) translateY(0px); }
-  67%   { transform: translateY(12px); }
-  70%   { transform: translateX(-10px) translateY(0px); }
-  72%   { transform: translateY(12px); }
-  75%   { transform: translateX(0px) translateY(0px); }
-  77%   { transform: translateY(12px); }
-  80%   { transform: translateX(6px) translateY(0px); }
-  82%   { transform: translateY(12px); }
-  85%   { transform: translateX(12px) translateY(0px); }
-  87%   { transform: translateY(12px); }
-  90%   { transform: translateX(12px) translateY(0px); }
-  92%   { transform: translateY(12px); }
-  95%   { transform: translateX(6px) translateY(0px); }
-  97%   { transform: translateY(12px); }
-  100%  { transform: translateX(0px) translateY(0px); }
+  // 0%    { transform: translateX(0px) translateY(0px); }
+  0%    { transform: translate(0px, 0px) rotateY(0deg); }
+  4%    { transform: translate(0px, 12px) rotateY(-3deg); }
+  8%    { transform: translate(-10px, 0px) rotateY(0deg); }
+  12%   { transform: translate(-10px, 12px) rotateY(-3deg); }
+  16%   { transform: translate(-20px, 0px) rotateY(0deg); }
+  20%   { transform: translate(-20px, 12px); }
+  25%   { transform: translate(-20px, 0px);}
+  30%   { transform: translate(-20px, 12px)  rotateY(3deg); }
+  34%   { transform: translate(-10px, 0px) rotateY(0deg); }
+  38%   { transform: translate(-10px, 12px) rotateY(3deg); }
+  42%   { transform: translate(0px, 0px) rotateY(0deg); }
+  46%   { transform: translate(0px, 12px); }
+  50%   { transform: translate(0px, 0px); }
+  54%   { transform: translate(0px, 12px) rotateY(3deg); }
+  58%   { transform: translate(10px, 0px) rotateY(0deg); }
+  62%   { transform: translate(10px, 12px) rotateY(3deg); }
+  66%   { transform: translate(20px, 0px) rotateY(0deg); }
+  70%   { transform: translate(20px, 12px); }
+  75%   { transform: translate(20px, 0px); }
+  80%   { transform: translate(20px, 12px) rotateY(-3deg); }
+  84%   { transform: translate(10px, 0px) rotateY(0deg); }
+  88%   { transform: translate(10px, 12px) rotateY(-3deg); }
+  92%   { transform: translate(0px, 0px) rotateY(0deg); }
+  96%   { transform: translate(0px, 12px); }
+  100%  { transform: translate(0px, 0px) rotateY(0deg); }
 }
