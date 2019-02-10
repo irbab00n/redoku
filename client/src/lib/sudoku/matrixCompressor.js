@@ -32,7 +32,6 @@ module.exports.decompress = (compressedMatrix) => {
   let decompressedMatrix = splitCompressed.map((row, index) => {
     if (index === splitCompressed.length - 1) {
       let endSplitValue = row.split(_VALUE_SEPARATOR).slice(0, -1);
-      console.log('decompressing last row: ', endSplitValue);
       return endSplitValue;
     }
     return row.split(_VALUE_SEPARATOR);

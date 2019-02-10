@@ -1,4 +1,5 @@
 import * as types from '../../types';
+import store from '../../store';
 import axios from 'axios';
 import matrixCompressor from '../../../lib/sudoku/matrixCompressor';
 import SudokuMatrix from '../../../lib/sudoku/SudokuMatrix';
@@ -17,17 +18,34 @@ export const checkMainViewPuzzleSolution = matrix => {
   console.log('does it pass sudoku rules?: ', testResult);
 
   return dispatch => {
-    // Rules we need to take care of
-
-    // - if the test is completed and the test result is valid
+    // if the test is completed and the test result is valid
     if (completed && testResult) {
+      const { puzzle } = store.getState().views.main;
+      // Trigger on the 'submitting' state -- Use to conditionally render 'Some work is happening'
+
+      console.log('puzzle solution: ', puzzle);
       // Save the solution
       // Trigger the win state
-      dispatch(setMainViewPuzzleWinStateAction(true));
-      dispatch(setMainViewPuzzleSubmissionMessageAction(`You win!`));
+      
+      let data = {
+        solution: {
+          puzzle_id: puzzle.storage.id,
+          solution: matrixCompressor.compress(puzzle.matrix)
+        }
+      };
+      
+      axios.post(`${API_URL}/solution/create`, data)
+      .then(response => {
+          dispatch(setMainViewPuzzleWinStateAction(true));
+          dispatch(setMainViewPuzzleSubmissionMessageAction(`You win!`));
+          console.log('successfully posted to solution create endpoint: ', response.data);
+        })
+        .catch(error => {
+          console.log('Something went wrong while attempting to create a new solution: ', error);
+        });
     }
 
-    // - if the test is not completed and the test result is not valid
+    // if the test is not completed and the test result is not valid
     if (!completed || !testResult) {
       // Set the fail state to true, and the win state to false
       dispatch(setMainViewPuzzleFailStateAction(true));

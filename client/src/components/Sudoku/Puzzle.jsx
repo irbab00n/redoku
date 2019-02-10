@@ -6,7 +6,7 @@ import PuzzleTimer from './PuzzleTimer';
 
 const widgetCache = {
   'summary': ({ difficulty, puzzleId }) => (
-    <PuzzleSummary difficulty={difficulty} puzzleId={puzzleId}/>
+    <PuzzleSummary key={`${difficulty}-${puzzleId}`} difficulty={difficulty} puzzleId={puzzleId}/>
   ),
   'timer': () => (
     <PuzzleTimer />
@@ -36,8 +36,6 @@ export default class Puzzle extends React.Component {
       checkSolutionFunction,
       updateFunction
     } = this.props;
-
-    console.log('puzzle: ', puzzle);
 
     return (
 
