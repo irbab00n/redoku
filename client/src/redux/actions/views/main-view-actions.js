@@ -299,3 +299,14 @@ const setMainViewTimerActiveAction = flag => ({
     flag
   }
 });
+
+// SET_MAIN_VIEW_TIMER
+export const setMainViewTimer = timer => {
+  return dispatch => dispatch(setMainViewTimerAction(timer));
+};
+const setMainViewTimerAction = timer => ({
+  type: types.SET_MAIN_VIEW_TIMER,
+  payload: {
+    timer
+  }
+});

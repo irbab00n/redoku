@@ -1,11 +1,11 @@
 import * as types from '../../types';
 
 import Puzzle from '../patterns/Puzzle';
-import Timer from '../patterns/Timer';
+import TimerData from '../patterns/TimerData';
 
 const INITIAL_STATE = () => ({
   puzzle: new Puzzle(),
-  timer: new Timer()
+  timerData: new TimerData()
 });
 
 const mainViewReducer = (state = new INITIAL_STATE(), action) => {
@@ -75,15 +75,19 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
     */
 
     case types.INCREMENT_MAIN_VIEW_TIMER:
-      newState.timer.elapsedTime += 1;
+      newState.timerData.elapsedTime += 1;
       return newState;
 
     case types.RESET_MAIN_VIEW_TIMER:
-      newState.timer = new Timer();
+      newState.timerData = new TimerData();
       return newState;
 
     case types.SET_MAIN_VIEW_TIMER_ACTIVE:
-      newState.timer.active = action.payload.flag;
+      newState.timerData.active = action.payload.flag;
+      return newState;
+
+    case types.SET_MAIN_VIEW_TIMER:
+      newState.timerData.timer = action.payload.timer;
       return newState;
     
     default:

@@ -8,7 +8,7 @@ import GameNavigation from '../components/GameNavigation/';
 import Puzzle from '../components/Sudoku/Puzzle';
 
 import difficultySettings from '../lib/difficultySettings';
-import Timer from '../lib/Timer';
+import Timer from '../lib/classes/Timer';
 
 class Main extends React.Component {
   constructor(props) {
@@ -19,7 +19,28 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
+    const timerConfig = {
+      onTick: () => {
+        console.log('main timer tick');
+        this.props.actions.incrementMainViewTimer();
+      },
+      onStart: (id) => {
+        console.log('starting the main timer: ', id);
+        this.props.actions.setMainViewTimerActive(true);
+        this.props.actions.setMainViewTimerId(id);
+      },
+      onPause: (remaining) => {
+        console.log('pausing the main timer: ', remaining);
+        this.props.actions.setMainViewTimerActive(false);
+      },
+      onResume: (remaining) => {
+        console.log('resuming the main timer: ', remaining);
+        this.props.actions.setMainViewTimerActive(true);
+      }
+    };
+    const timer = new Timer(1000, timerConfig);
     this.props.actions.fetchMainViewPuzzle();
+    this.props.actions.setMainViewTimer(timer);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -40,7 +61,7 @@ class Main extends React.Component {
 
   render() {
     const { puzzleLoaded } = this.state;
-    const { puzzle } = this.props.views.main;
+    const { puzzle, timerData } = this.props.views.main;
 
     const leftTrackConfig = {
       show: true,
@@ -55,21 +76,12 @@ class Main extends React.Component {
         {
           tag: 'timer',
           data: {
-            puzzleId: puzzle.storage.id
+            puzzle,
+            timerData 
           }
         }
       ]
     };
-
-    const timerConfig = {
-      onTick: () => {
-
-      },
-      onStart: () => {},
-      onPause: () => {},
-      onResume: () => {}
-    };
-    const timer = new Timer(1000, timerConfig);
 
     return (
       <main className="main-view-layout">
@@ -90,6 +102,7 @@ class Main extends React.Component {
             loaded={puzzleLoaded}
             checkSolutionFunction={this.props.actions.checkMainViewPuzzleSolution}
             updateFunction={this.props.actions.setMainViewPuzzleSquare}
+            timerData={timerData}
           /> 
         </div>
     
