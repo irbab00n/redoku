@@ -32,7 +32,7 @@ class PuzzleTimer extends React.Component {
           }
           {/* Start/Resume */}
           {
-            timerData.elapsedTime === 0 ? 
+            timerData.elapsedTime === 0 && !timerData.active ? 
               <button onClick={() => timerData.timer.start()}>
                 START
               </button> :
