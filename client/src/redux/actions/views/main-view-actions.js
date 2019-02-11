@@ -7,6 +7,16 @@ import { checkGrid } from '../../../lib/sudoku/sudoku';
 
 const API_URL = process.env.API_URL || 'http://localhost:8080';
 
+
+/* 
+██████╗ ██╗   ██╗███████╗███████╗██╗     ███████╗     █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗███████╗
+██╔══██╗██║   ██║╚══███╔╝╚══███╔╝██║     ██╔════╝    ██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║██╔════╝
+██████╔╝██║   ██║  ███╔╝   ███╔╝ ██║     █████╗      ███████║██║        ██║   ██║██║   ██║██╔██╗ ██║███████╗
+██╔═══╝ ██║   ██║ ███╔╝   ███╔╝  ██║     ██╔══╝      ██╔══██║██║        ██║   ██║██║   ██║██║╚██╗██║╚════██║
+██║     ╚██████╔╝███████╗███████╗███████╗███████╗    ██║  ██║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║███████║
+╚═╝      ╚═════╝ ╚══════╝╚══════╝╚══════╝╚══════╝    ╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝                                                                                                          
+*/
+
 // CHECK_MAIN_VIEW_PUZZLE_SOLUTION
 /**
  * Submits the puzzle for solution
@@ -242,6 +252,49 @@ export const setMainViewPuzzleWinState = flag => {
 };
 const setMainViewPuzzleWinStateAction = flag => ({
   type: types.SET_MAIN_VIEW_PUZZLE_WIN_STATE,
+  payload: {
+    flag
+  }
+});
+
+/*
+████████╗██╗███╗   ███╗███████╗██████╗      █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗███████╗
+╚══██╔══╝██║████╗ ████║██╔════╝██╔══██╗    ██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║██╔════╝
+   ██║   ██║██╔████╔██║█████╗  ██████╔╝    ███████║██║        ██║   ██║██║   ██║██╔██╗ ██║███████╗
+   ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗    ██╔══██║██║        ██║   ██║██║   ██║██║╚██╗██║╚════██║
+   ██║   ██║██║ ╚═╝ ██║███████╗██║  ██║    ██║  ██║╚██████╗   ██║   ██║╚██████╔╝██║ ╚████║███████║
+   ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+*/
+
+// INCREMENT_MAIN_VIEW_TIMER
+/**
+ * Increments the timer value stored in state
+ */
+export const incrementMainViewTimer = () => {
+  return dispatch => dispatch(incrementMainViewTimerAction());
+};
+const incrementMainViewTimerAction = () => ({
+  type: types.INCREMENT_MAIN_VIEW_TIMER
+});
+
+// RESET_MAIN_VIEW_TIMER
+/**
+ * Resets the timer value stored in state
+ */
+export const resetMainViewTimer = () => {
+  return dispatch => dispatch(resetMainViewTimerAction());
+};
+const resetMainViewTimerAction = () => ({
+  type: types.RESET_MAIN_VIEW_TIMER
+});
+
+
+// SET_MAIN_VIEW_TIMER_ACTIVE
+export const setMainViewTimerActive = flag => {
+  return dispatch => dispatch(setMainViewTimerActiveAction(flag));
+};
+const setMainViewTimerActiveAction = flag => ({
+  type: types.SET_MAIN_VIEW_TIMER_ACTIVE,
   payload: {
     flag
   }

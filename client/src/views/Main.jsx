@@ -8,6 +8,7 @@ import GameNavigation from '../components/GameNavigation/';
 import Puzzle from '../components/Sudoku/Puzzle';
 
 import difficultySettings from '../lib/difficultySettings';
+import Timer from '../lib/Timer';
 
 class Main extends React.Component {
   constructor(props) {
@@ -51,12 +52,24 @@ class Main extends React.Component {
             difficulty: puzzle.storage.difficulty
           }
         },
-        // {
-        //   tag: 'timer',
-        //   data: {}
-        // }
+        {
+          tag: 'timer',
+          data: {
+            puzzleId: puzzle.storage.id
+          }
+        }
       ]
     };
+
+    const timerConfig = {
+      onTick: () => {
+
+      },
+      onStart: () => {},
+      onPause: () => {},
+      onResume: () => {}
+    };
+    const timer = new Timer(1000, timerConfig);
 
     return (
       <main className="main-view-layout">

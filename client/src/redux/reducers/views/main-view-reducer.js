@@ -1,18 +1,11 @@
 import * as types from '../../types';
-import SudokuMatrix from '../../../lib/sudoku/SudokuMatrix';
+
+import Puzzle from '../patterns/Puzzle';
+import Timer from '../patterns/Timer';
 
 const INITIAL_STATE = () => ({
-  puzzle: {
-    error: false,
-    errorMessage: '',
-    fetched: false,
-    fetching: false,
-    matrix: new SudokuMatrix(),
-    storage: {},
-    submissionMessage: '',
-    failState: false,
-    winState: false
-  }
+  puzzle: new Puzzle(),
+  timer: new Timer()
 });
 
 const mainViewReducer = (state = new INITIAL_STATE(), action) => {
@@ -21,6 +14,15 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
   
   switch (action.type) {
    
+    /* 
+      ██████╗ ██╗   ██╗███████╗███████╗██╗     ███████╗
+      ██╔══██╗██║   ██║╚══███╔╝╚══███╔╝██║     ██╔════╝
+      ██████╔╝██║   ██║  ███╔╝   ███╔╝ ██║     █████╗  
+      ██╔═══╝ ██║   ██║ ███╔╝   ███╔╝  ██║     ██╔══╝  
+      ██║     ╚██████╔╝███████╗███████╗███████╗███████╗
+      ╚═╝      ╚═════╝ ╚══════╝╚══════╝╚══════╝╚══════╝
+    */
+
     case types.SET_MAIN_VIEW_PUZZLE_FETCHED:
       newState.puzzle.fetched = action.payload.flag;
       return newState;
@@ -46,10 +48,8 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
       return newState;
 
     case types.SET_MAIN_VIEW_PUZZLE_SQUARE:
-      let row, column;
-
+      var row, column;
       [row, column] = action.payload.coordinates.split('-');
-      
       newState.puzzle.matrix[row][column] = action.payload.value;
       return newState;
 
@@ -63,6 +63,27 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
 
     case types.SET_MAIN_VIEW_PUZZLE_WIN_STATE:
       newState.puzzle.winState = action.payload.flag;
+      return newState;
+
+    /* 
+      ████████╗██╗███╗   ███╗███████╗██████╗ 
+      ╚══██╔══╝██║████╗ ████║██╔════╝██╔══██╗
+         ██║   ██║██╔████╔██║█████╗  ██████╔╝
+         ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
+         ██║   ██║██║ ╚═╝ ██║███████╗██║  ██║
+         ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
+    */
+
+    case types.INCREMENT_MAIN_VIEW_TIMER:
+      newState.timer.elapsedTime += 1;
+      return newState;
+
+    case types.RESET_MAIN_VIEW_TIMER:
+      newState.timer = new Timer();
+      return newState;
+
+    case types.SET_MAIN_VIEW_TIMER_ACTIVE:
+      newState.timer.active = action.payload.flag;
       return newState;
     
     default:
