@@ -2,6 +2,7 @@ import * as types from '../../types';
 
 import Puzzle from '../patterns/Puzzle';
 import TimerData from '../patterns/TimerData';
+import Timer from '../../../lib/classes/Timer';
 
 const INITIAL_STATE = () => ({
   puzzle: new Puzzle(),
@@ -80,6 +81,7 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
 
     case types.RESET_MAIN_VIEW_TIMER:
       newState.timerData = new TimerData();
+      newState.timerData.timer = action.payload.timer;
       return newState;
 
     case types.SET_MAIN_VIEW_TIMER_ACTIVE:

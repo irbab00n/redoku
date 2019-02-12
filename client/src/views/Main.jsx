@@ -27,7 +27,6 @@ class Main extends React.Component {
       onStart: (id) => {
         console.log('starting the main timer: ', id);
         this.props.actions.setMainViewTimerActive(true);
-        this.props.actions.setMainViewTimerId(id);
       },
       onPause: (remaining) => {
         console.log('pausing the main timer: ', remaining);

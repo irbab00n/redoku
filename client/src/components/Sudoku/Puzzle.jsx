@@ -29,11 +29,11 @@ export default class Puzzle extends React.Component {
   render() {
 
     const {
+      checkSolutionFunction,
       leftTrackConfig = {},
-      rightTrackConfig = {},
       loaded,
       puzzle,
-      checkSolutionFunction,
+      rightTrackConfig = {},
       updateFunction
     } = this.props;
 

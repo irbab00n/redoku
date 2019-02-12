@@ -1,6 +1,7 @@
 import * as types from '../../types';
 import store from '../../store';
 import axios from 'axios';
+import Timer from '../../../lib/classes/Timer';
 import matrixCompressor from '../../../lib/sudoku/matrixCompressor';
 import SudokuMatrix from '../../../lib/sudoku/SudokuMatrix';
 import { checkGrid } from '../../../lib/sudoku/sudoku';
@@ -70,13 +71,26 @@ export const checkMainViewPuzzleSolution = matrix => {
  * @param {Object} params - Will contain key/value pairs for the RESTful API to consume
  */
 export const fetchMainViewPuzzle = (params = {}) => {
+
   return dispatch => {
+    const { timerData } = store.getState().views.main;
+
+    if (timerData.timer !== null) {
+      let oldTimerDelay = timerData.timer.delay;
+      let oldTimerOptions = timerData.timer.options;
+      let newTimer = new Timer(oldTimerDelay, oldTimerOptions);
+      dispatch(resetMainViewTimerAction(newTimer));
+    }
+
     dispatch(setMainViewPuzzleMatrixAction(new SudokuMatrix()));  // Clear the current puzzle out of state
     dispatch(setMainViewPuzzleFetchedAction(false));  // Set the fetched state to false
     dispatch(setMainViewPuzzleFetchingAction(true));  // Set the fetching state to true
     dispatch(setMainViewPuzzleSubmissionMessage(''));  // Reset the submission message
     dispatch(setMainViewPuzzleFailStateAction(false));  // Reset the 'fail' state
     dispatch(setMainViewPuzzleWinStateAction(false));  // Reset the 'win' state
+    // Reset the timer
+
+    // -- pull out the old options object, instantiate new Timer with them
     axios.get(`${API_URL}/puzzle`, {params})  // Go get the puzzle using the supplied params
       .then(response => {
         // console.log('successful response from the puzzles API', response);
@@ -281,11 +295,14 @@ const incrementMainViewTimerAction = () => ({
 /**
  * Resets the timer value stored in state
  */
-export const resetMainViewTimer = () => {
-  return dispatch => dispatch(resetMainViewTimerAction());
+export const resetMainViewTimer = timer => {
+  return dispatch => dispatch(resetMainViewTimerAction(timer));
 };
-const resetMainViewTimerAction = () => ({
-  type: types.RESET_MAIN_VIEW_TIMER
+const resetMainViewTimerAction = timer => ({
+  type: types.RESET_MAIN_VIEW_TIMER,
+  payload: {
+    timer
+  }
 });
 
 
