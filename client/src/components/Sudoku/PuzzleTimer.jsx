@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class PuzzleTimer extends React.Component {
   constructor(props) {
@@ -8,8 +9,8 @@ class PuzzleTimer extends React.Component {
 
   render() {
 
-    console.log('props on Puzzle Timer: ', this.props);
-    const { timerData } = this.props;
+    // console.log('props on Puzzle Timer: ', this.props);
+    const { showControls, timerData } = this.props;
 
     // if the timer is active and the elapsed time is greater than 0
     // if the timer is active and the 
@@ -18,31 +19,32 @@ class PuzzleTimer extends React.Component {
 
       <div className="puzzle-timer-wrapper">
         <h4>Elapsed Time</h4>
-        <div className="puzzle-timer-container">
-          {timerData.elapsedTime}
+        <div className="puzzle-timer-container purple-bg">
+          <div className="inner-wrapper">
+            {moment().startOf('day').seconds(timerData.elapsedTime).format('H:mm:ss')}
+          </div>
         </div>
-        <div className="puzzle-timer-container">
-          {/* Pause button */}
-          {
-            timerData.active ? 
-              <button onClick={() => timerData.timer.pause(timerData.timerId)}>
-                PAUSE
-              </button> :
-              null
-          }
-          {/* Start/Resume */}
-          {
-            timerData.elapsedTime === 0 && !timerData.active ? 
-              <button onClick={() => timerData.timer.start()}>
-                START
-              </button> :
-              timerData.active ?
-                null :
-                <button onClick={() => timerData.timer.resume()}>
-                  RESUME
-                </button>
-          }
-        </div>
+        {
+          showControls ?
+            <div className="puzzle-timer-controls">
+              {/* Pause button */}
+              {
+                timerData.active ? 
+                  <label title="Resume timer" onClick={() => timerData.timer.pause()}><i className="fas fa-pause"></i></label> :
+                  null
+              }
+              {/* Start/Resume */}
+              {
+                !timerData.started && !timerData.active ? 
+                  <label title="Start timer" onClick={() => timerData.timer.start()}><i className="fas fa-play"></i></label> :
+                  timerData.active ?
+                    null :
+                    <label title="Resume timer" onClick={() => timerData.timer.resume()}><i className="fas fa-play"></i></label>
+              }
+            </div> :
+            null
+        }
+        
       </div>
 
     );

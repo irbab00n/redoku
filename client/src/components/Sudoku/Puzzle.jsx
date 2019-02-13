@@ -8,8 +8,8 @@ const widgetCache = {
   'summary': ({ difficulty, puzzleId }) => (
     <PuzzleSummary key={`${difficulty}-${puzzleId}`} difficulty={difficulty} puzzleId={puzzleId}/>
   ),
-  'timer': ({ puzzle, timerData }) => (
-    <PuzzleTimer key={`timer-${puzzle.storage.id}`} timerData={timerData} puzzle={puzzle}/>
+  'timer': ({ puzzle, showControls, timerData }) => (
+    <PuzzleTimer key={`timer-${puzzle.storage.id}`} showControls={showControls} timerData={timerData} puzzle={puzzle}/>
   )
 };
 

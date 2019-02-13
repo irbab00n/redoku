@@ -76,6 +76,7 @@ export const fetchMainViewPuzzle = (params = {}) => {
     const { timerData } = store.getState().views.main;
 
     if (timerData.timer !== null) {
+      timerData.timer.pause();
       let oldTimerDelay = timerData.timer.delay;
       let oldTimerOptions = timerData.timer.options;
       let newTimer = new Timer(oldTimerDelay, oldTimerOptions);

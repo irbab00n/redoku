@@ -77,7 +77,8 @@ class Main extends React.Component {
           tag: 'timer',
           data: {
             puzzle,
-            timerData 
+            showControls: false,
+            timerData
           }
         }
       ]
