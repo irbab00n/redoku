@@ -12,12 +12,22 @@
 }
 
 .puzzle-timer-container {
+  @include transition(0.2s);
+  @include jumbotron-background(0.1);
   @include flex; @include align-center; @include justify-center;
   margin: 20px;
   min-height: 48px;
 
+  &.grey-bg {
+    background-color: $blue-grey-50;
+  }
+
   &.purple-bg {
     background-color: $indigo-400;
+  }
+
+  &.active {
+    background-color: $light-green-200;
   }
 }
 

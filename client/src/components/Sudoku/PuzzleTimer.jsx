@@ -19,7 +19,7 @@ class PuzzleTimer extends React.Component {
 
       <div className="puzzle-timer-wrapper">
         <h4>Elapsed Time</h4>
-        <div className="puzzle-timer-container purple-bg">
+        <div className={`puzzle-timer-container ${timerData.active ? 'active' : 'grey-bg'}`}>
           <div className="inner-wrapper">
             {moment().startOf('day').seconds(timerData.elapsedTime).format('H:mm:ss')}
           </div>

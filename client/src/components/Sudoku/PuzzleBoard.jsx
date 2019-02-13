@@ -118,7 +118,7 @@ class PuzzleBoard extends React.Component {
   }
 
   render() {
-    const { checkSolutionFunction, puzzle } = this.props;
+    const { checkSolutionFunction, puzzle, timerData } = this.props;
 
     // console.log('current puzzle matrix: ', puzzle.matrix);
 
@@ -130,8 +130,9 @@ class PuzzleBoard extends React.Component {
           </div>
 
           <PuzzleSubmission
-            puzzle={puzzle}
             checkSolutionFunction={puzzle.failState ? () => {} : checkSolutionFunction}
+            puzzle={puzzle}
+            timerData={timerData}
           />
 
         </div>

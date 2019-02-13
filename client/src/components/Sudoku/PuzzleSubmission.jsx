@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PuzzleSubmission = ({ checkSolutionFunction, puzzle }) => (
+const PuzzleSubmission = ({ checkSolutionFunction, puzzle, timerData }) => (
   <div className="puzzle-submission-wrapper">
     <div className="inner-wrapper">
       {
@@ -8,7 +8,12 @@ const PuzzleSubmission = ({ checkSolutionFunction, puzzle }) => (
           null :
           <button
             className="puzzle-submission"
-            onClick={() => checkSolutionFunction(JSON.parse(JSON.stringify(puzzle.matrix)))}
+            onClick={
+              () => {
+                timerData.timer.pause();
+                checkSolutionFunction(JSON.parse(JSON.stringify(puzzle.matrix)));
+              }
+            }
           >
             Submit Puzzle
           </button>

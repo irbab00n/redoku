@@ -14,6 +14,10 @@ class PuzzleSquare extends React.Component {
     this.replaceValueWithPlaceholder = this.replaceValueWithPlaceholder.bind(this);
   }
 
+  shouldComponentUpdate(nextState) {
+    return true;
+  }
+
   updateValue(keyCode) {
     const { coordinates, updateFunction } = this.props;
 
@@ -60,6 +64,7 @@ class PuzzleSquare extends React.Component {
   }
 
   replaceValueWithPlaceholder() {
+    console.log('should run on blur');
     if (this.state.placeholder !== '') {
       this.setState({
         showValue: true,
