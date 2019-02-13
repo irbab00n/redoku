@@ -317,6 +317,19 @@ const setMainViewTimerActiveAction = flag => ({
   }
 });
 
+
+// SET_MAIN_VIEW_TIMER_STARTED
+export const setMainViewTimerStarted = flag => {
+  return dispatch => dispatch(setMainViewTimerStartedAction(flag));
+};
+const setMainViewTimerStartedAction = flag => ({
+  type: types.SET_MAIN_VIEW_TIMER_STARTED,
+  payload: {
+    flag
+  }
+})
+
+
 // SET_MAIN_VIEW_TIMER
 export const setMainViewTimer = timer => {
   return dispatch => dispatch(setMainViewTimerAction(timer));

@@ -40,7 +40,18 @@ class PuzzleSquare extends React.Component {
     }
   }
 
+  // TO BE RAN ON FOCUS
   updatePlaceholder(value) {
+    const { timerData } = this.props;
+    // if the timer isn't active and it hasn't been started
+    if (!timerData.timer.active && !timerData.started) {
+      timerData.timer.start();
+    }
+    // if the timer isn't active and it has been started
+    if (!timerData.timer.active && timerData.started) {
+      timerData.timer.resume();
+    }
+
     let newPlaceholder = value === '' ? '' : value;
     this.setState({
       placeholder: newPlaceholder,

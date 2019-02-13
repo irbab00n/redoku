@@ -100,6 +100,7 @@ class PuzzleBoard extends React.Component {
           value={assignedValue}
           updateFunction={isInitialValue ? () => {} : this.props.updateFunction}
           isInitialValue={isInitialValue}
+          timerData={this.props.timerData}
         />
       );
 

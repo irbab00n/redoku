@@ -88,6 +88,10 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
       newState.timerData.active = action.payload.flag;
       return newState;
 
+    case types.SET_MAIN_VIEW_TIMER_STARTED:
+      newState.timerData.started = action.payload.flag;
+      return newState;
+
     case types.SET_MAIN_VIEW_TIMER:
       newState.timerData.timer = action.payload.timer;
       return newState;
