@@ -10,7 +10,7 @@ const PuzzleSubmission = ({ checkSolutionFunction, puzzle, timerData }) => (
             className="puzzle-submission"
             onClick={
               () => {
-                timerData.timer.pause();
+                // timerData.timer.pause();
                 checkSolutionFunction(JSON.parse(JSON.stringify(puzzle.matrix)));
               }
             }

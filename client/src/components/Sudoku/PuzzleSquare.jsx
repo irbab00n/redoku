@@ -14,7 +14,20 @@ class PuzzleSquare extends React.Component {
     this.replaceValueWithPlaceholder = this.replaceValueWithPlaceholder.bind(this);
   }
 
-  shouldComponentUpdate(nextState) {
+  shouldComponentUpdate(nextProps) {
+    const { started } = nextProps.timerData;
+
+    /* 
+      Ensures the showValue state will reset when the timer resets
+      Before this was added, if the user clicked into a square starting the timer,
+      the Redux state causes the component to not reset the showValue flag
+    */
+    if (!started && this.props.timerData.started) {
+      this.setState({
+        showValue: true
+      });
+    }
+
     return true;
   }
 
@@ -64,7 +77,7 @@ class PuzzleSquare extends React.Component {
   }
 
   replaceValueWithPlaceholder() {
-    console.log('should run on blur');
+    // console.log('should run on blur');
     if (this.state.placeholder !== '') {
       this.setState({
         showValue: true,

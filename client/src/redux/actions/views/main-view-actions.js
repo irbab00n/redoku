@@ -31,12 +31,13 @@ export const checkMainViewPuzzleSolution = matrix => {
   return dispatch => {
     // if the test is completed and the test result is valid
     if (completed && testResult) {
-      const { puzzle } = store.getState().views.main;
+      const { puzzle, timerData } = store.getState().views.main;
       // Trigger on the 'submitting' state -- Use to conditionally render 'Some work is happening'
 
       console.log('puzzle solution: ', puzzle);
       // Save the solution
       // Trigger the win state
+      timerData.timer.pause();
       
       let data = {
         solution: {
