@@ -25,24 +25,24 @@ const API_URL = process.env.API_URL || 'http://localhost:8080';
  */
 export const checkMainViewPuzzleSolution = matrix => {
   let { completed, testResult } = checkGrid(matrix);
-  console.log('was the puzzle completed?: ', completed);
-  console.log('does it pass sudoku rules?: ', testResult);
+  // console.log('was the puzzle completed?: ', completed);
+  // console.log('does it pass sudoku rules?: ', testResult);
 
   return dispatch => {
     // if the test is completed and the test result is valid
     if (completed && testResult) {
       const { puzzle, timerData } = store.getState().views.main;
-      // Trigger on the 'submitting' state -- Use to conditionally render 'Some work is happening'
+      let timeRemaining = 1000 - Number(timerData.timer.pause());
 
-      console.log('puzzle solution: ', puzzle);
-      // Save the solution
-      // Trigger the win state
-      timerData.timer.pause();
+      // console.log('puzzle solution: ', puzzle);
+      // console.log('ms since last tick: ', timeRemaining);
+      // console.log(`total seconds with MS: ${timerData.elapsedTime}.${timeRemaining}`);
       
       let data = {
         solution: {
           puzzle_id: puzzle.storage.id,
-          solution: matrixCompressor.compress(puzzle.matrix)
+          solution: matrixCompressor.compress(puzzle.matrix),
+          time: `${timerData.elapsedTime}.${timeRemaining}`
         }
       };
       

@@ -40,6 +40,7 @@ class Timer {
     if (this.options.hasOwnProperty('onPause')) { // if the user supplied an onPause listener
       this.options.onPause(this.remaining);  // run the listener, passing in the remaining value
     }
+    return this.remaining;
   }
 
   resume() {
