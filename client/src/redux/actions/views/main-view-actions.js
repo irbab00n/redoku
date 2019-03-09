@@ -93,7 +93,7 @@ export const fetchMainViewPuzzle = (params = {}) => {
     // Reset the timer
 
     // -- pull out the old options object, instantiate new Timer with them
-    axios.get(`${API_URL}/puzzle`, {params})  // Go get the puzzle using the supplied params
+    axios.get(`${API_URL}/puzzle/random`, {params})  // Go get the puzzle using the supplied params
       .then(response => {
         // console.log('successful response from the puzzles API', response);
         let decompressedPuzzle = matrixCompressor.decompress(response.data.initial, ',');  // Decompress the puzzle
