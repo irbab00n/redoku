@@ -8,6 +8,7 @@
 @import "base/shared";
 
 /* COMPONENTS SASS FILES */
+@import "components/Analytics/puzzle-analytics";
 @import "components/GameNavigation/difficulty-dropdown";
 @import "components/GameNavigation/index";
 @import "components/GameNavigation/list-toggle-button";

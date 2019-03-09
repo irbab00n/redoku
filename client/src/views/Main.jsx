@@ -84,6 +84,17 @@ class Main extends React.Component {
       ]
     };
 
+    const rightTrackConfig = {
+      show: true,
+      widgets: [
+        {
+          tag: 'analytics',
+          data: {
+          }
+        }
+      ]
+    };
+
     return (
       <main className="main-view-layout">
 
@@ -99,6 +110,7 @@ class Main extends React.Component {
         <div className="main-view-container">
           <Puzzle
             leftTrackConfig={leftTrackConfig}
+            rightTrackConfig={rightTrackConfig}
             puzzle={puzzle}
             loaded={puzzleLoaded}
             checkSolutionFunction={this.props.actions.checkMainViewPuzzleSolution}

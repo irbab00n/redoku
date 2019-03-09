@@ -13,7 +13,8 @@
 
 .puzzle-timer-container {
   @include transition(0.2s);
-  @include jumbotron-background(0.1);
+  @include jumbotron-background(0.05);
+  @include box-shadow(0px, 0px, 4px, 0px, rgba(25, 25, 25, 0.1));
   @include flex; @include align-center; @include justify-center;
   margin: 20px;
   min-height: 48px;

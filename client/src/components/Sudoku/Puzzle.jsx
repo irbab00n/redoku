@@ -4,7 +4,12 @@ import PuzzleBoard from './PuzzleBoard';
 import PuzzleSummary from './PuzzleSummary';
 import PuzzleTimer from './PuzzleTimer';
 
+import PuzzleAnalytics from '../Analytics/PuzzleAnalytics'
+
 const widgetCache = {
+  'analytics': () => (
+    <PuzzleAnalytics />
+  ),
   'summary': ({ difficulty, puzzleId }) => (
     <PuzzleSummary key={`${difficulty}-${puzzleId}`} difficulty={difficulty} puzzleId={puzzleId}/>
   ),

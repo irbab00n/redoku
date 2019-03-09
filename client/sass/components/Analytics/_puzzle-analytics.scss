@@ -1,0 +1,14 @@
+$puzzle-analytics-wrapper-min-height: 260px;
+$puzzle-analytics-wrapper-width: 100%;
+
+.puzzle-analytics-wrapper {
+  @include box-shadow(0px, 0px, 4px, 0px, rgba(25, 25, 25, 0.1));
+  @include flex;
+  background-color: $white;
+  min-height: $puzzle-analytics-wrapper-min-height;
+  width: $puzzle-analytics-wrapper-width;
+}
+.puzzle-analytics-wrapper > .inner-wrapper {
+  width: 100%;
+  padding: 10px;
+}
