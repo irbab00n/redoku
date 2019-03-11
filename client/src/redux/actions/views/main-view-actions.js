@@ -8,7 +8,6 @@ import { checkGrid } from '../../../lib/sudoku/sudoku';
 
 const API_URL = process.env.API_URL || 'http://localhost:8080';
 
-
 /* 
 ██████╗ ██╗   ██╗███████╗███████╗██╗     ███████╗     █████╗  ██████╗████████╗██╗ ██████╗ ███╗   ██╗███████╗
 ██╔══██╗██║   ██║╚══███╔╝╚══███╔╝██║     ██╔════╝    ██╔══██╗██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║██╔════╝
@@ -95,12 +94,15 @@ export const fetchMainViewPuzzle = (params = {}) => {
     // -- pull out the old options object, instantiate new Timer with them
     axios.get(`${API_URL}/puzzle/random`, {params})  // Go get the puzzle using the supplied params
       .then(response => {
-        // console.log('successful response from the puzzles API', response);
+        console.log('successful response from the puzzles API', response);
         let decompressedPuzzle = matrixCompressor.decompress(response.data.initial, ',');  // Decompress the puzzle
         dispatch(setMainViewPuzzleFetchingAction(false));  // Set the fetching state to false
         dispatch(setMainViewPuzzleStorageAction(response.data));  // Store the puzzle data in state
         dispatch(setMainViewPuzzleMatrixAction(decompressedPuzzle));  // Set the puzzle matrix to the decompressed puzzle
         dispatch(setMainViewPuzzleFetchedAction(true));  // Set the fetched state to true
+        if (response.data.hasOwnProperty('solutions')) {
+          dispatch(setMainViewPuzzleSolutionsAction(response.data.solutions));
+        }
       })
       .catch(error => {
         console.log('something went wrong while attempting to fetch the puzzle', error);
@@ -190,6 +192,22 @@ const setMainViewPuzzleMatrixAction = matrix => ({
     matrix
   }
 });
+
+// SET_MAIN_VIEW_PUZZLE_SOLUTIONS
+/**
+ * Stores the current puzzles solutions in state for analytics
+ * @param {Array} matrix - 9 x 9 Matrix representing a Sudoku puzzle grid
+ */
+export const setMainViewPuzzleSolutions = solutions => {
+  return dispatch => dispatch(setMainViewPuzzleSolutionsAction(solutions));
+};
+const setMainViewPuzzleSolutionsAction = solutions => ({
+  type: types.SET_MAIN_VIEW_PUZZLE_SOLUTIONS,
+  payload: {
+    solutions
+  }
+});
+
 
 
 // SET_MAIN_VIEW_PUZZLE_STORAGE

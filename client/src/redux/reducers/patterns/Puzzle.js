@@ -6,6 +6,7 @@ const Puzzle = () => ({
   fetched: false,
   fetching: false,
   matrix: new SudokuMatrix(),
+  solutions: [],
   storage: {},
   submissionMessage: '',
   failState: false,

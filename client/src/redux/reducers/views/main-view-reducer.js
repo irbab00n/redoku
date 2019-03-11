@@ -40,6 +40,10 @@ const mainViewReducer = (state = new INITIAL_STATE(), action) => {
       newState.puzzle.errorMessage = action.payload.message;
       return newState;
 
+    case types.SET_MAIN_VIEW_PUZZLE_SOLUTIONS:
+      newState.puzzle.solutions = action.payload.solutions;
+      return newState;
+
     case types.SET_MAIN_VIEW_PUZZLE_STORAGE:
       newState.puzzle.storage = action.payload.data;
       return newState;
