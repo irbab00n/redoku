@@ -28,7 +28,7 @@ class Timer {
 
   pause() {
     if (!this.isRunning) {
-      console.log('Timer is currently not running, you cannot pause it');
+      // console.log('Timer is currently not running, you cannot pause it');
       return;
     }
     clearInterval(this.timerId);  // clear any remaining intervals
@@ -45,7 +45,7 @@ class Timer {
 
   resume() {
     if (this.isRunning) {
-      console.log('Timer is currently running, you cannot resume it');
+      // console.log('Timer is currently running, you cannot resume it');
       return;
     }
     clearInterval(this.timerId);  // clear any remaining intervals
@@ -66,7 +66,7 @@ class Timer {
 
   start() {
     if (this.isRunning) {
-      console.log('Timer is already running, you cannot restart it');
+      // console.log('Timer is already running, you cannot restart it');
       return;
     }
     if (this.isPaused) { // if the timer is paused, prevent starting a new timer; this prevents inaccuracies within the total time elapsed
