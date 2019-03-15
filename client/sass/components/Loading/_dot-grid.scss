@@ -1,0 +1,67 @@
+.dot-grid {
+  display: inline-block;
+  position: relative;
+  width: 128px;
+  height: 128px;
+}
+.dot-grid div {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: $indigo-100;
+  animation: dot-grid-animation 1.2s linear infinite;
+}
+.dot-grid div:nth-child(1) {
+  top: 12px;
+  left: 12px;
+  animation-delay: 0s;
+}
+.dot-grid div:nth-child(2) {
+  top: 12px;
+  left: 52px;
+  animation-delay: -0.4s;
+}
+.dot-grid div:nth-child(3) {
+  top: 12px;
+  left: 90px;
+  animation-delay: -0.8s;
+}
+.dot-grid div:nth-child(4) {
+  top: 52px;
+  left: 12px;
+  animation-delay: -0.4s;
+}
+.dot-grid div:nth-child(5) {
+  top: 52px;
+  left: 52px;
+  animation-delay: -0.8s;
+}
+.dot-grid div:nth-child(6) {
+  top: 52px;
+  left: 90px;
+  animation-delay: -1.2s;
+}
+.dot-grid div:nth-child(7) {
+  top: 90px;
+  left: 12px;
+  animation-delay: -0.8s;
+}
+.dot-grid div:nth-child(8) {
+  top: 90px;
+  left: 52px;
+  animation-delay: -1.2s;
+}
+.dot-grid div:nth-child(9) {
+  top: 90px;
+  left: 90px;
+  animation-delay: -1.6s;
+}
+@keyframes dot-grid-animation {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
