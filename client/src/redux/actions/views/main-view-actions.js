@@ -73,13 +73,11 @@ export const checkMainViewPuzzleSolution = matrix => {
 export const fetchMainViewPuzzle = (params = {}) => {
 
   return dispatch => {
-    const { timerData } = store.getState().views.main;
+    const { timer } = store.getState().views.main.timerData;
 
-    if (timerData.timer !== null) {
-      timerData.timer.pause();
-      let oldTimerDelay = timerData.timer.delay;
-      let oldTimerOptions = timerData.timer.options;
-      let newTimer = new Timer(oldTimerDelay, oldTimerOptions);
+    if (timer !== null) {
+      timer.pause();
+      let newTimer = new Timer(timer.delay, timer.options);
       dispatch(resetMainViewTimerAction(newTimer));
     }
 
@@ -89,7 +87,6 @@ export const fetchMainViewPuzzle = (params = {}) => {
     dispatch(setMainViewPuzzleSubmissionMessage(''));  // Reset the submission message
     dispatch(setMainViewPuzzleFailStateAction(false));  // Reset the 'fail' state
     dispatch(setMainViewPuzzleWinStateAction(false));  // Reset the 'win' state
-    // Reset the timer
 
     // -- pull out the old options object, instantiate new Timer with them
     axios.get(`${API_URL}/puzzle/random`, {params})  // Go get the puzzle using the supplied params

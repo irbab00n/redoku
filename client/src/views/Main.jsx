@@ -6,6 +6,7 @@ import dispatchMappedActions from '../redux/dispatchMappedActions';
 import Footer from '../components/Footer/'
 import GameNavigation from '../components/GameNavigation/';
 import Puzzle from '../components/Sudoku/Puzzle';
+import PuzzleLoading from '../components/Sudoku/PuzzleLoading';
 
 import difficultySettings from '../lib/difficultySettings';
 import Timer from '../lib/classes/Timer';
@@ -63,6 +64,8 @@ class Main extends React.Component {
     const { puzzleLoaded } = this.state;
     const { puzzle, timerData } = this.props.views.main;
 
+    console.log('puzzle object: ', puzzle);
+
     const leftTrackConfig = {
       show: true,
       widgets: [
@@ -108,15 +111,19 @@ class Main extends React.Component {
         />
         
         <div className="main-view-container">
-          <Puzzle
-            leftTrackConfig={leftTrackConfig}
-            rightTrackConfig={rightTrackConfig}
-            puzzle={puzzle}
-            loaded={puzzleLoaded}
-            checkSolutionFunction={this.props.actions.checkMainViewPuzzleSolution}
-            updateFunction={this.props.actions.setMainViewPuzzleSquare}
-            timerData={timerData}
-          /> 
+          {
+            puzzle.fetching ?
+              <PuzzleLoading /> :
+              <Puzzle
+                leftTrackConfig={leftTrackConfig}
+                rightTrackConfig={rightTrackConfig}
+                puzzle={puzzle}
+                loaded={puzzleLoaded}
+                checkSolutionFunction={this.props.actions.checkMainViewPuzzleSolution}
+                updateFunction={this.props.actions.setMainViewPuzzleSquare}
+                timerData={timerData}
+              /> 
+          }
         </div>
     
         <Footer />

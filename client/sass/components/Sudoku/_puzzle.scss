@@ -19,6 +19,12 @@ $side-track-dimension: 280px;
   }
 }
 
+/* Puzzle Loading */
+.puzzle-loading-wrapper {
+  @include flex; @include align-center; @include justify-center;
+  height: 628px;
+  width: 1100px; // @todo this will need to change once we add in mobile responsivity
+}
 
 /* Puzzle Container */
 .puzzle-container {
