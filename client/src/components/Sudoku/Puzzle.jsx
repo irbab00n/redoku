@@ -8,7 +8,7 @@ import PuzzleAnalytics from '../Analytics/PuzzleAnalytics'
 
 const widgetCache = {
   'analytics': () => (
-    <PuzzleAnalytics />
+    <PuzzleAnalytics key={`puzzle-analytics`}/>
   ),
   'summary': ({ difficulty, puzzleId }) => (
     <PuzzleSummary key={`${difficulty}-${puzzleId}`} difficulty={difficulty} puzzleId={puzzleId}/>

@@ -7,11 +7,16 @@ class PuzzleSquare extends React.Component {
     super(props);
     this.state = {
       placeholder: '',
+      mouseEnteredPad: false,
+      showNumberPad: false,
       showValue: true
     };
+    this.buildNumbers = this.buildNumbers.bind(this);
+    this.setMouseEnteredPad = this.setMouseEnteredPad.bind(this);
+    this.replaceValueWithPlaceholder = this.replaceValueWithPlaceholder.bind(this);
+    this.toggleNumberPad = this.toggleNumberPad.bind(this);
     this.updateValue = this.updateValue.bind(this);
     this.updatePlaceholder = this.updatePlaceholder.bind(this);
-    this.replaceValueWithPlaceholder = this.replaceValueWithPlaceholder.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -31,8 +36,44 @@ class PuzzleSquare extends React.Component {
     return true;
   }
 
+  buildNumbers(numbers) {
+    return numbers.map(number => (
+      <li
+        key={`numberpad-number-${number}`}
+        className={number === 'Clear' ? 'clear' : ''}
+        onClick={() => this.updateValue(number === 'Clear' ? 8 : number.toString().charCodeAt(0))}
+      >
+        {number}
+      </li>
+    ));
+  }
+
+  setMouseEnteredPad(state) {
+    this.setState({
+      mouseEnteredPad: state
+    });
+  }
+  
+  replaceValueWithPlaceholder() {
+    // console.log('should run on blur');
+    if (this.state.placeholder !== '') {
+      this.setState({
+        showValue: true,
+        placeholder: ''
+      });
+    }
+  }
+
+  toggleNumberPad() {
+    this.setState({
+      showNumberPad: !this.state.showNumberPad
+    });
+  }
+
   updateValue(keyCode) {
     const { coordinates, updateFunction } = this.props;
+
+    console.log('keycode to update: ', keyCode);
 
     // valid values to allow
     const validCharacters = '123456789';
@@ -76,26 +117,29 @@ class PuzzleSquare extends React.Component {
     });
   }
 
-  replaceValueWithPlaceholder() {
-    // console.log('should run on blur');
-    if (this.state.placeholder !== '') {
-      this.setState({
-        showValue: true,
-        placeholder: ''
-      });
-    }
-  }
-
   render() {
-    const { showValue } = this.state;
+    const { mouseEnteredPad, showNumberPad, showValue } = this.state;
     const { background, isInitialValue, value } = this.props;
 
     let coordinates = this.props.coordinates.split('-');
     let row = coordinates[0];
     let column = coordinates[1];
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'Clear'];
 
     return (
-      <div className={`grid-item display-flex-row flex-align-center flex-justify-center`}>
+      <div className={`grid-item`}>
+        {
+          showNumberPad || mouseEnteredPad ?
+            <ul className="puzzle-number-pad"
+              onMouseEnter={() => this.setMouseEnteredPad(true)}
+              onMouseLeave={() => this.setMouseEnteredPad(false)}
+            >
+              {
+                this.buildNumbers(numbers)
+              }
+            </ul> :
+            null
+        }
         <input 
           className={`puzzle-box ${isInitialValue ? `${background} initial-bg` : background}`} 
           placeholder={this.state.placeholder} 
@@ -103,8 +147,14 @@ class PuzzleSquare extends React.Component {
           readOnly={isInitialValue}
           onChange={() => {}}
           onKeyDown={isInitialValue ? () => {} : (e) => this.updateValue(e.keyCode)}
-          onFocus={isInitialValue ? () => {} : () => this.updatePlaceholder(value)} 
-          onBlur={isInitialValue ? () => {} :() => this.replaceValueWithPlaceholder()}
+          onFocus={isInitialValue ? () => {} : () => {
+            this.toggleNumberPad();
+            this.updatePlaceholder(value);
+          }} 
+          onBlur={isInitialValue ? () => {} : () => {
+            this.toggleNumberPad();
+            this.replaceValueWithPlaceholder();
+          }}
         />
       </div>
     );

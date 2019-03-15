@@ -22,7 +22,7 @@ class Main extends React.Component {
   componentWillMount() {
     const timerConfig = {
       onTick: () => {
-        console.log('main timer tick');
+        // console.log('main timer tick');
         this.props.actions.incrementMainViewTimer();
       },
       onStart: (id) => {
@@ -63,8 +63,6 @@ class Main extends React.Component {
   render() {
     const { puzzleLoaded } = this.state;
     const { puzzle, timerData } = this.props.views.main;
-
-    console.log('puzzle object: ', puzzle);
 
     const leftTrackConfig = {
       show: true,
