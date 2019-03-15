@@ -88,11 +88,11 @@ class Main extends React.Component {
     const rightTrackConfig = {
       show: true,
       widgets: [
-        {
-          tag: 'analytics',
-          data: {
-          }
-        }
+        // {
+        //   tag: 'analytics',
+        //   data: {
+        //   }
+        // }
       ]
     };
 
