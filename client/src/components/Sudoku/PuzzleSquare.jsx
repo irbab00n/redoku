@@ -9,12 +9,14 @@ class PuzzleSquare extends React.Component {
       notes: {},
       placeholder: '',
       mouseEnteredPad: false,
+      showNotes: false,
       showNumberPad: false,
       showValue: true
     };
     this.buildNumbers = this.buildNumbers.bind(this);
     this.markAsNote = this.markAsNote.bind(this);
     this.setMouseEnteredPad = this.setMouseEnteredPad.bind(this);
+    this.setShowNotes = this.setShowNotes.bind(this);
     this.replaceValueWithPlaceholder = this.replaceValueWithPlaceholder.bind(this);
     this.toggleNumberPad = this.toggleNumberPad.bind(this);
     this.updateValue = this.updateValue.bind(this);
@@ -73,6 +75,12 @@ class PuzzleSquare extends React.Component {
   setMouseEnteredPad(state) {
     this.setState({
       mouseEnteredPad: state
+    });
+  }
+
+  setShowNotes(state) {
+    this.setState({
+      showNotes: state
     });
   }
   
@@ -140,7 +148,7 @@ class PuzzleSquare extends React.Component {
   }
 
   render() {
-    const { mouseEnteredPad, notes, showNumberPad, showValue } = this.state;
+    const { mouseEnteredPad, notes, showNotes, showNumberPad, showValue } = this.state;
     const { background, isInitialValue, value } = this.props;
 
     let coordinates = this.props.coordinates.split('-');
@@ -149,7 +157,21 @@ class PuzzleSquare extends React.Component {
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'Clear'];
 
     return (
-      <div className={`grid-item`}>
+      <div className={`grid-item`}
+        onMouseEnter={() => this.setShowNotes(true)}
+        onMouseLeave={() => this.setShowNotes(false)}
+      >
+        {
+          !showNumberPad && !mouseEnteredPad && Object.keys(notes).length > 0 && showNotes ?
+            <ul className="square-notes">
+              {Object.keys(notes).map(note => {
+                return (
+                  <li>{note}</li>
+                );
+              })}
+            </ul> :
+            null
+        }
         {
           showNumberPad || mouseEnteredPad ?
             <ul className="puzzle-number-pad"
@@ -169,7 +191,7 @@ class PuzzleSquare extends React.Component {
           readOnly={isInitialValue}
           onChange={() => {}}
           onKeyDown={isInitialValue ? () => {} : (e) => this.updateValue(e.keyCode)}
-          onFocus={isInitialValue ? () => {} : () => {
+          onFocus={isInitialValue ? () => {} : (e) => {
             this.toggleNumberPad();
             this.updatePlaceholder(value);
           }} 
@@ -177,6 +199,7 @@ class PuzzleSquare extends React.Component {
             this.toggleNumberPad();
             this.replaceValueWithPlaceholder();
           }}
+          onContextMenu={e => e.preventDefault()}
         />
       </div>
     );

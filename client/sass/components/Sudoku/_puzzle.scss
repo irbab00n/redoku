@@ -77,6 +77,7 @@ $side-track-dimension: 280px;
 }
 
 .puzzle-number-pad > li {
+  @include no-select;
   @include transition(0.2s);
   @include flex; @include align-center; @include justify-center;
   font-family: Helvetica, sans-serif;
@@ -144,8 +145,29 @@ $side-track-dimension: 280px;
     background: linear-gradient(135deg, $indigo-100 88%,rgba(78,163,229,1) 88%,rgba(78,163,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#4ea3e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   }
+}
 
- 
+.square-notes {
+  @include flex; @include align-center;
+  @include box-shadow(0px, 0px, 12px, 0px, rgba(53, 156, 216, 0.6));
+  background-color: $white;
+  height: 36px;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  top: 44px;
+  z-index: 4;
+}
+.square-notes > li {
+  @include flex; @include align-center; @include justify-center;
+  @include no-select;
+  font-family: Helvetica, sans-serif;
+  font-size: 24px; font-size: 600;
+  width: 36px;
+
+  &:last-child {
+    margin-right: 0px;
+  }
 }
 
 .grid-bg-normal {
