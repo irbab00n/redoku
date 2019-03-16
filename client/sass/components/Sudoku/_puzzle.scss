@@ -90,12 +90,16 @@ $side-track-dimension: 280px;
   }
 
   &:active {
-    background-color: $indigo-50;
+    background-color: $indigo-50 !important;
   }
 }
 .puzzle-number-pad > li.clear {
   width: 150px;
   font-size: 20px;
+}
+
+.puzzle-number-pad > li.is-note {
+  background-color: $blue-400;
 }
 
 .puzzle-box {
@@ -123,6 +127,22 @@ $side-track-dimension: 280px;
     outline-color: $indigo-700;
     height: 94%;
     width: 94%;
+  }
+
+  &.has-notes-grid-bg-normal {
+    background: $white; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, $white 88%, rgba(78,163,229,1) 88%, rgba(78,163,229,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, $white 88%,rgba(78,163,229,1) 88%,rgba(78,163,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, $white 88%,rgba(78,163,229,1) 88%,rgba(78,163,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#4ea3e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  }
+
+  &.has-notes-grid-bg-alt {
+    background: $indigo-100; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, $indigo-100 88%, rgba(78,163,229,1) 88%, rgba(78,163,229,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, $indigo-100 88%,rgba(78,163,229,1) 88%,rgba(78,163,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, $indigo-100 88%,rgba(78,163,229,1) 88%,rgba(78,163,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#4ea3e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   }
 
  

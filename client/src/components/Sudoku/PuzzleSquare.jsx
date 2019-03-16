@@ -6,12 +6,14 @@ class PuzzleSquare extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      notes: {},
       placeholder: '',
       mouseEnteredPad: false,
       showNumberPad: false,
       showValue: true
     };
     this.buildNumbers = this.buildNumbers.bind(this);
+    this.markAsNote = this.markAsNote.bind(this);
     this.setMouseEnteredPad = this.setMouseEnteredPad.bind(this);
     this.replaceValueWithPlaceholder = this.replaceValueWithPlaceholder.bind(this);
     this.toggleNumberPad = this.toggleNumberPad.bind(this);
@@ -37,15 +39,35 @@ class PuzzleSquare extends React.Component {
   }
 
   buildNumbers(numbers) {
-    return numbers.map(number => (
-      <li
-        key={`numberpad-number-${number}`}
-        className={number === 'Clear' ? 'clear' : ''}
-        onClick={() => this.updateValue(number === 'Clear' ? 8 : number.toString().charCodeAt(0))}
-      >
-        {number}
-      </li>
-    ));
+    const { notes } = this.state;
+    return numbers.map(number => {
+      return (
+          <li
+            key={`numberpad-number-${number}`}
+            className={`${number === 'Clear' ? 'clear' : ''}  ${notes[number] ? 'is-note' : ''}`}
+            onClick={() => this.updateValue(number === 'Clear' ? 8 : number.toString().charCodeAt(0))}
+            onContextMenu={(e) => this.markAsNote(e, number)}
+          >
+            {number}
+          </li>
+        );
+    });
+  }
+
+  markAsNote(e, number) {
+    e.preventDefault();
+    const { notes } = this.state;
+    console.log('number to add as note: ', number);
+    console.log('notes currently stored: ', notes);
+    if (number === 'Clear') return;
+    if (notes[number]) {
+      delete notes[number];
+    } else {
+      notes[number] = true;
+    }
+    this.setState({
+      notes
+    });
   }
 
   setMouseEnteredPad(state) {
@@ -118,7 +140,7 @@ class PuzzleSquare extends React.Component {
   }
 
   render() {
-    const { mouseEnteredPad, showNumberPad, showValue } = this.state;
+    const { mouseEnteredPad, notes, showNumberPad, showValue } = this.state;
     const { background, isInitialValue, value } = this.props;
 
     let coordinates = this.props.coordinates.split('-');
@@ -141,7 +163,7 @@ class PuzzleSquare extends React.Component {
             null
         }
         <input 
-          className={`puzzle-box ${isInitialValue ? `${background} initial-bg` : background}`} 
+          className={`puzzle-box ${isInitialValue ? `${background} initial-bg` : background} ${Object.keys(notes).length > 0 ? 'has-notes-' + background : ''}`} 
           placeholder={this.state.placeholder} 
           value={showValue ? value : ''}
           readOnly={isInitialValue}
